@@ -1,0 +1,43 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+<style>
+    .card {
+        margin: 50px auto;
+        max-width: 500px;
+        border-color: #00a693;
+    }
+
+    .card-header {
+        background-color: #00a693;
+        color: white;
+    }
+
+    .btn-new-user {
+        background-color: #00a693;
+        color: white;
+    }
+
+        .btn-new-user:hover {
+            background-color: #00877b;
+        }
+</style>
+
+<div class="container">
+    <div class="card text-center">
+        <div class="card-header">
+            Create a new user
+        </div>
+        <div class="card-body">
+            <p class="card-text">If you have not applied to us using the online application form before please select New User.</p>
+            <a href="Identity/Account/Register" class="btn btn-new-user">New User</a>
+            <a href="Identity/Account/Login" class="btn btn-secondary">Login</a>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>

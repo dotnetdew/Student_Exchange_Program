@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Card</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header-custom {
+            background-color: #17a2b8;
+            color: white;
+            font-size: 1.2rem;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            padding: 15px 20px;
+        }
+
+        .card-body-custom {
+            padding: 20px;
+        }
+
+        .info-text {
+            color: #17a2b8;
+            font-weight: bold;
+        }
+
+        .btn-custom {
+            background-color: #17a2b8;
+            color: white;
+            border-radius: 20px;
+            padding: 10px 20px;
+            font-size: 1rem;
+        }
+
+            .btn-custom:hover {
+                background-color: #138f9b;
+            }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-header card-header-custom">
+                My Applications
+            </div>
+            <div class="card-body card-body-custom">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <strong>Application Reference Number</strong>
+                        <p class="info-text">XXXXXXXXXXXXXX</p>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <strong>Created Date/Time</strong>
+                        <p class="info-text">XX/XX/XXXX XX:XX</p>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <strong>Course Title</strong>
+                        <p class="info-text">Study Abroad International - Academic Year</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 text-right">
+                        <a href="/Students/ApplicationChecklist" class="btn btn-custom">Continue Application</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+

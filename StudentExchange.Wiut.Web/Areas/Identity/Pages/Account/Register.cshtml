@@ -1,0 +1,155 @@
+﻿@page
+@model RegisterModel
+@* @{
+    ViewData["Title"] = "Register";
+} *@
+
+<h1>@ViewData["Title"]</h1>
+
+@* <div class="row">
+    <div class="col-md-4">
+        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            <h2>Create a new account.</h2>
+            <hr />
+            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                <label asp-for="Input.Email">Email</label>
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
+                <label asp-for="Input.Password">Password</label>
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
+                <label asp-for="Input.ConfirmPassword">Confirm Password</label>
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            </div>
+            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
+        </form>
+    </div>
+</div> *@
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+<style>
+    .card {
+        margin: 50px auto;
+        max-width: 800px;
+        border-color: #00a693;
+    }
+
+    .card-header {
+        background-color: #00a693;
+        color: white;
+    }
+
+    .btn-create-user {
+        background-color: #00a693;
+        color: white;
+    }
+
+        .btn-create-user:hover {
+            background-color: #00877b;
+        }
+</style>
+
+<div class="container">
+    <div class="card">
+        <div class="card-header text-center">
+            Create New User
+        </div>
+        <div class="card-body">
+            <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="mb-3 row">
+                    <label asp-for="Input.Title" for="title" class="col-sm-2 col-form-label">Title*</label>
+                    <div class="col-sm-10">
+                        <select asp-for="Input.Title" class="form-select" id="title" required>
+                            <option selected>--- Please select an option ---</option>
+                            <option value="mr">Mr.</option>
+                            <option value="mrs">Mrs.</option>
+                            <option value="miss">Miss</option>
+                            <option value="ms">Ms.</option>
+                        </select>
+                        <span asp-validation-for="Input.Title" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label asp-for="Input.ForeName" class="col-sm-2 col-form-label">Forename*</label>
+                    <div class="col-sm-10">
+                        <input asp-for="Input.ForeName" type="text" class="form-control" id="forename" required>
+                        <span asp-validation-for="Input.ForeName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label asp-for="Input.ForeName2" class="col-sm-2 col-form-label">Forename 2</label>
+                    <div class="col-sm-10">
+                        <input asp-for="Input.ForeName2" type="text" class="form-control" id="forename2">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label asp-for="Input.ForeName3" for="forename3" class="col-sm-2 col-form-label">Forename 3</label>
+                    <div class="col-sm-10">
+                        <input asp-for="Input.ForeName3" type="text" class="form-control" id="forename3">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label asp-for="Input.FamilyName" class="col-sm-2 col-form-label">Family Name*</label>
+                    <div class="col-sm-10">
+                        <input asp-for="Input.FamilyName" type="text" class="form-control" id="familyName" required>
+                        <span asp-validation-for="Input.FamilyName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label asp-for="Input.DateOfBirth" class="col-sm-2 col-form-label">Date of birth*</label>
+                    <div class="col-sm-10">
+                        <input asp-for="Input.DateOfBirth" type="date" class="form-control" id="dob" required>
+                        <span asp-validation-for="Input.DateOfBirth" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label asp-for="Input.Email" class="col-sm-2 col-form-label">Email address (this will be your username)*</label>
+                    <div class="col-sm-10">
+                        <input asp-for="Input.Email" type="email" class="form-control" id="email" required>
+                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label asp-for="Input.ConfirmEmail" class="col-sm-2 col-form-label">Confirm email address*</label>
+                    <div class="col-sm-10">
+                        <input asp-for="Input.ConfirmEmail" type="email" class="form-control" id="confirmEmail" required>
+                        <span asp-validation-for="Input.ConfirmEmail" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label asp-for="Input.Password" class="col-sm-2 col-form-label">Password*</label>
+                    <div class="col-sm-10">
+                        <input asp-for="Input.Password" type="password" class="form-control" id="password" required>
+                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label asp-for="Input.ConfirmPassword" class="col-sm-2 col-form-label">Confirm password*</label>
+                    <div class="col-sm-10">
+                        <input asp-for="Input.ConfirmPassword" type="password" class="form-control" id="confirmPassword" required>
+                        <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="text-end">
+                    <button type="reset" class="btn btn-secondary">Cancel</button>
+                    <button id="registerSubmit" type="submit" class="btn btn-create-user">Create user</button>
+                </div>
+            </form>
+            <p class="mt-3">*Denotes a mandatory field</p>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>

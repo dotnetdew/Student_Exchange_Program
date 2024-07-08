@@ -1,0 +1,121 @@
+﻿<!-- Bootstrap CSS -->
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+<style>
+    .card {
+        margin: 20px auto;
+        max-width: 700px;
+        border-color: #00a693;
+    }
+
+    .card-header, .icon-guide {
+        background-color: #00a693;
+        color: white;
+    }
+
+    .list-group-item {
+        border: 1px solid #ccc;
+        cursor: pointer;
+    }
+
+    .btn-question {
+        background-color: #006d5b; /* Darker color for Ask a Question button */
+        color: white;
+        width: 100%;
+    }
+
+        .btn-question:hover {
+            background-color: #005544;
+        }
+
+    .icon-guide {
+        padding: 10px;
+    }
+
+    .collapse-content {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-top: none;
+    }
+</style>
+
+<div class="container">
+    <div class="card">
+        <div class="card-header text-center">
+            Application Checklist
+        </div>
+        <div class="card-body">
+            <p>
+                Application from <strong>H Clark</strong> for <strong>Study Abroad International</strong> - <strong>Academic Year</strong> to start in <strong>September 2021</strong>
+            </p>
+            <ul class="list-group">
+                <li class="list-group-item d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#personalDetails">
+                    Personal Details <span class="badge bg-light text-dark"><i class="bi bi-star"></i></span>
+                </li>
+                <div id="personalDetails" class="collapse collapse-content">Content for Personal Details</div>
+
+                <li class="list-group-item d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#contactDetails">
+                    Contact Details <span class="badge bg-light text-dark"><i class="bi bi-star"></i></span>
+                </li>
+                <div id="contactDetails" class="collapse collapse-content">Content for Contact Details</div>
+
+                <li class="list-group-item d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#educationalDetails">
+                    Educational Details <span class="badge bg-light text-dark"><i class="bi bi-star"></i></span>
+                </li>
+                <div id="educationalDetails" class="collapse collapse-content">Content for Educational Details</div>
+
+                <li class="list-group-item d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#moduleSelection">
+                    Module Selection <span class="badge bg-light text-dark"><i class="bi bi-star"></i></span>
+                </li>
+                <div id="moduleSelection" class="collapse collapse-content">Content for Module Selection</div>
+
+                <li class="list-group-item d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#supportingInformation">
+                    Supporting Information <span class="badge bg-light text-dark"><i class="bi bi-star"></i></span>
+                </li>
+                <div id="supportingInformation" class="collapse collapse-content">Content for Supporting Information</div>
+
+                <li class="list-group-item d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#housing">
+                    Housing <span class="badge bg-light text-dark"><i class="bi bi-star"></i></span>
+                </li>
+                <div id="housing" class="collapse collapse-content">Content for Housing</div>
+
+                <li class="list-group-item d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#submission">
+                    Submission <span class="badge bg-light text-dark"><i class="bi bi-star"></i></span>
+                </li>
+                <div id="submission" class="collapse collapse-content">Content for Submission</div>
+
+                <li class="list-group-item d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#preview">
+                    Preview <span class="badge bg-light text-dark"><i class="bi bi-star"></i></span>
+                </li>
+                <div id="preview" class="collapse collapse-content">Content for Preview</div>
+
+                <li class="list-group-item d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#myApplications">
+                    My Applications <span class="badge bg-light text-dark"><i class="bi bi-star"></i></span>
+                </li>
+                <div id="myApplications" class="collapse collapse-content">Content for My Applications</div>
+
+                <li class="list-group-item d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#saveAndLogout">
+                    Save and Logout <span class="badge bg-light text-dark"><i class="bi bi-star"></i></span>
+                </li>
+                <div id="saveAndLogout" class="collapse collapse-content">Content for Save and Logout</div>
+            </ul>
+        </div>
+        <div class="card-footer icon-guide">
+            <h5>Icon Guide</h5>
+            <p>Please complete as many fields as possible to assist with processing your application</p>
+            <ul class="list-unstyled">
+                <li><span class="badge bg-light text-dark"><i class="bi bi-star"></i></span> This page has not been started</li>
+                <li><span class="badge bg-danger"><i class="bi bi-x-circle"></i></span> Outstanding information required for mandatory fields</li>
+                <li><span class="badge bg-success"><i class="bi bi-check-circle"></i></span> All mandatory information has been provided</li>
+                <li>Click to see more information about the question</li>
+            </ul>
+            <button type="button" class="btn btn-question">Ask a question</button>
+            <p>Opens an email to educationalabroad@westminster.ac.uk</p>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<!-- Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css">

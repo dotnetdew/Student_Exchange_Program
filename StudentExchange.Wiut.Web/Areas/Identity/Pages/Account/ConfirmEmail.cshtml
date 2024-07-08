@@ -1,0 +1,72 @@
+﻿@page
+@model ConfirmEmailModel
+@{
+    ViewData["Title"] = "Confirm email";
+}
+
+<h1>@ViewData["Title"]</h1>
+<partial name="_StatusMessage" model="Model.StatusMessage" />
+
+<style>
+    .card-custom {
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        max-width: 800px;
+        margin: 50px auto;
+    }
+
+    .card-header-custom {
+        background-color: #20c997;
+        color: white;
+        padding: 15px 20px;
+        font-size: 1.25rem;
+        font-weight: 500;
+    }
+
+    .card-body-custom {
+        padding: 20px;
+        font-size: 1rem;
+    }
+
+    .btn-custom {
+        background-color: #20c997;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1rem;
+    }
+
+        .btn-custom:focus {
+            outline: none;
+            box-shadow: none;
+        }
+
+        .btn-custom:hover {
+            background-color: #17a487;
+        }
+
+    .card-footer-custom {
+        padding: 10px 20px;
+        border-top: 1px solid #ddd;
+        text-align: right;
+    }
+</style>
+
+@{
+}
+
+<div class="container">
+    <div class="card card-custom">
+        <div class="card-header card-header-custom">
+            Email Verification Complete
+        </div>
+        <div class="card-body card-body-custom">
+            Thank you for verifying your email address. Please click the Next button where you will be taken to the application portal.
+        </div>
+        <div class="card-footer card-footer-custom">
+            <a href="~/Students/MyApplications" class="btn btn-custom" >Next</a>
+        </div>
+    </div>
+</div>
