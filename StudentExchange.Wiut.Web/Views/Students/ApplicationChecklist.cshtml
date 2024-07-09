@@ -1,5 +1,6 @@
-﻿
-<style>
+﻿@model Student
+
+@* <style>
     .checklist-container {
         background-color: #fff;
         border: 1px solid #76c7c0;
@@ -31,9 +32,9 @@
 <div class="checklist-container">
     <div class="checklist-header">Application Checklist</div>
     <div class="checklist-body">
-        <p>Application from <strong>XXXX XXXXXXXXX</strong> for <strong>Business Exchange UG SEM 1</strong> to start in <strong>September 2023</strong></p>
+        <p>Application from <strong>@Html.DisplayFor(model => model.ForeName) @Html.DisplayFor(model => model.FamilyName)</strong> for <strong>Business Exchange UG SEM 1</strong> to start in <strong>September 2023</strong></p>
     </div>
-</div>
+</div> *@
 
 @* <!-- Bootstrap CSS -->
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
@@ -155,5 +156,293 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 <!-- Bootstrap Icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css">
- *@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css"> *@
+
+<style>
+    .form-section {
+        display: none;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
+
+        .form-section h3 {
+            margin-top: 0;
+            font-weight: bold;
+            color: #337ab7;
+        }
+        .form-section.active {
+            display: block;
+        }
+
+        .form-section .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-section .form-control {
+            height: 40px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+        }
+
+        .form-section .btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            background-color: #337ab7;
+            color: #fff;
+            cursor: pointer;
+        }
+
+            .form-section .btn:hover {
+                background-color: #23527c;
+            }
+
+    #personal-details {
+        border-color: #337ab7;
+    }
+
+    #contact-details {
+        border-color: #5cb85c;
+    }
+
+    #educational-details {
+        border-color: #d9534f;
+    }
+</style>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-3">
+            <ul class="list-group">
+                <li class="list-group-item" data-target="#personal-details">Personal Details</li>
+                <li class="list-group-item" data-target="#contact-details">Contact Details</li>
+                <li class="list-group-item" data-target="#educational-details">Educational Details</li>
+                <!-- Add more items as needed -->
+            </ul>
+        </div>
+        <div class="col-md-9">
+            <form id="personal-details-form" asp-controller="Student" asp-action="SaveEducationalDetails">
+                <div id="personal-details" class="form-section active">
+                    <h3>Personal Details</h3>
+                    <!-- Add personal details fields here -->
+                    <div class="form-group">
+                        <label for="title">Title *</label>
+                        <select class="form-control form-select" id="title" name="title" required>
+                            <option selected disabled></option>
+                            <option>Mr</option>
+                            <option>Miss</option>
+                            <option>Mrs</option>
+                            <option>Ms</option>
+                            <option>Dr</option>
+                            <option>Prof</option>
+                            <option>Gender Neutral</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="forename">Forename</label>
+                        <input type="text" class="form-control" id="forename" name="forename" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="second-forename">Second Forename</label>
+                        <input type="text" class="form-control" id="second-forename" name="second-forename">
+                    </div>
+                    <div class="form-group">
+                        <label for="third-forename">Third Forename</label>
+                        <input type="text" class="form-control" id="third-forename" name="third-forename">
+                    </div>
+                    <div class="form-group">
+                        <label for="family-name">Family Name *</label>
+                        <input type="text" class="form-control" id="family-name" name="family-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="preferred-name">Preferred Name</label>
+                        <input type="text" class="form-control" id="preferred-name" name="preferred-name">
+                    </div>
+                    <div class="form-group">
+                        <label for="previous-family-name">Previous Family Name</label>
+                        <input type="text" class="form-control" id="previous-family-name" name="previous-family-name">
+                    </div>
+                    <div class="form-group">
+                        <label for="dob">Date of Birth *</label>
+                        <input type="date" class="form-control" id="dob" name="dob" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="gender">Gender *</label>
+                        <select class="form-control form-select" id="gender" name="gender" required>
+                            <option selected disabled></option>
+                            <option>Male</option>
+                            <option>Female</option>
+                            <option>Not specified</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="westminster-id">Do you already have a Westminster 8-digit Student ID? *</label>
+                        <select class="form-control form-select" id="westminsterid" name="westminsterid" required>
+                            <option selected disabled></option>
+                            <option>Yes</option>
+                            <option>No</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="country_of_birth">Country of birth *</label>
+                        <select class="form-control form-select" id="country_of_birth" name="country_of_birth" required>
+                            <option value="notselected" selected disabled></option>
+
+                            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                            <script>
+                                $.ajax({
+                                    url: '/Students/GetCountries',
+                                    dataType: 'json',
+                                    success: function (response) {
+                                        var data = typeof response === 'string' ? JSON.parse(response) : response;
+                                        console.log(data);
+                                        $('#country_of_birth').empty();
+
+                                        var sortedKeys = Object.keys(data).sort(function (a, b) {
+                                            return data[a].localeCompare(data[b]);
+                                        });
+
+                                        for (var i = 0; i < sortedKeys.length; i++) {
+                                            var countryCode = sortedKeys[i];
+                                            var countryName = data[countryCode];
+                                            $('#country_of_birth').append('<option value="' + countryCode + '">' + countryName + '</option>');
+                                        }
+                                    },
+                                    error: function (xhr, status, error) {
+                                        console.error("Error: " + error);
+                                    }
+                                });
+                            </script>
+                        </select>
+                    </div>
+                    <!-- Add more personal details fields as needed -->
+                    <div class="form-group">
+                        <label for="preferred-name">Nationality *</label>
+                        <input type="text" class="form-control" id="nationality" name="nationality" placeholder="ex. Canadian" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="country_of_residence">Country of residence *</label>
+                        <select class="form-control form-select" id="country_of_residence" name="country_of_residence" required>
+                            <option selected disabled></option>
+
+                            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                            <script>
+                                $.ajax({
+                                    url: '/Students/GetCountries',
+                                    dataType: 'json',
+                                    success: function (response) {
+                                        var data = typeof response === 'string' ? JSON.parse(response) : response;
+                                        console.log(data);
+                                        $('#country_of_residence').empty();
+
+                                        var sortedKeys = Object.keys(data).sort(function (a, b) {
+                                            return data[a].localeCompare(data[b]);
+                                        });
+
+                                        for (var i = 0; i < sortedKeys.length; i++) {
+                                            var countryCode = sortedKeys[i];
+                                            var countryName = data[countryCode];
+                                            $('#country_of_residence').append('<option value="' + countryCode + '">' + countryName + '</option>');
+                                        }
+                                    },
+                                    error: function (xhr, status, error) {
+                                        console.error("Error: " + error);
+                                    }
+                                });
+                            </script>
+                        </select>
+                    </div>
+                    <br />
+                    <h3>Passport Details</h3>
+                    <p>This information can be provided at a later date</p>
+
+                    <div class="form-group">
+                        <label for="passport-number">Passport number</label>
+                        <input type="text" class="form-control" id="passport-number" name="passport-number">
+                    </div>
+                    <div class="form-group">
+                        <label for="date-of-expiry">Date of issue</label>
+                        <input type="date" class="form-control" id="date-of-issue" name="date-of-issue">
+                    </div>
+                    <div class="form-group">
+                        <label for="date-of-issue">Date of expiry</label>
+                        <input type="date" class="form-control" id="date-of-expiry" name="date-of-expiry">
+                    </div>
+                    <div class="form-group">
+                        <label for="nationality-on-passport">Nationality as shown on passport</label>
+                        <input type="text" class="form-control" id="nationality-on-passport" name="nationality-on-passport">
+                    </div>
+                    <div class="form-group">
+                        <label for="upload-passport">Upload passport</label>
+                        <input type="file" class="form-control" id="upload-passport" name="upload-passport">
+                    </div>
+
+                    <br />
+                    <h3>Immigration Information</h3>
+                    <p>Please read the University's information on <a href="https://www.westminster.ac.uk/international/student-exchanges/how-to-apply/visa-requirements">visa requirements</a> before answering the question(s) below.</p>
+
+                    <div class="form-group">
+                        <label for="attend-lessons">Do you intend and are you able to attend all lessons / classes as part of your programme in Uzbekistan? *</label>
+                        <select class="form-control form-select" id="attend-lessons" name="attend-lessons">
+                            <option selected disabled></option>
+                            <option>Yes</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="did-you-studied">Have you studied in the UK previously on a student visa? *</label>
+                        <select class="form-control form-select" id="did-you-studied" name="did-you-studied">
+                            <option selected disabled></option>
+                            <option>Yes</option>
+                            <option>No</option>
+                        </select>
+                    </div>
+
+                    <br /><br />
+                    <div class="d-flex">
+                        <p>*Denotes a mandatory field</p>
+                        <button type="submit" class="btn btn-primary" style="margin-left: 500px;">Save and Continue</button>
+                    </div>
+                </div>
+
+                <form id="contact-details-form" asp-controller="Student" asp-action="SaveContactDetails">
+                    <div id="contact-details" class="form-section">
+                        <h3>Contact Details</h3>
+                        <!-- Add contact details fields here -->
+                        <!-- ... -->
+                        <button type="submit" class="btn btn-primary">Save and Continue</button>
+                    </div>
+                </form>
+
+
+                <form id="educational-details-form" asp-controller="Student" asp-action="SaveEducationalDetails">
+                    <div id="educational-details" class="form-section">
+                        <h3>Educational Details</h3>
+                        <!-- Add educational details fields here -->
+                        <!-- ... -->
+                        <button type="submit" class="btn btn-primary">Save and Continue</button>
+                    </div>
+                </form>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('.list-group-item').click(function () {
+            var target = $(this).data('target');
+            $('.form-section').removeClass('active');
+            $(target).addClass('active');
+        });
+    });
+</script>
