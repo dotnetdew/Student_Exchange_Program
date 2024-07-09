@@ -414,19 +414,239 @@
                 <form id="contact-details-form" asp-controller="Student" asp-action="SaveContactDetails">
                     <div id="contact-details" class="form-section">
                         <h3>Contact Details</h3>
+                        <hr />
+                        <h3>Permanent Home Address</h3>
                         <!-- Add contact details fields here -->
-                        <!-- ... -->
-                        <button type="submit" class="btn btn-primary">Save and Continue</button>
+                        <div class="form-group">
+                            <label for="country-contact-details">Country *</label>
+                            <select class="form-control form-select" id="country-contact-details" name="country-contact-details" required>
+                                <option selected disabled></option>
+
+                                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                                <script>
+                                    $.ajax({
+                                        url: '/Students/GetCountries',
+                                        dataType: 'json',
+                                        success: function (response) {
+                                            var data = typeof response === 'string' ? JSON.parse(response) : response;
+                                            console.log(data);
+                                            $('#country-contact-details').empty();
+
+                                            var sortedKeys = Object.keys(data).sort(function (a, b) {
+                                                return data[a].localeCompare(data[b]);
+                                            });
+
+                                            for (var i = 0; i < sortedKeys.length; i++) {
+                                                var countryCode = sortedKeys[i];
+                                                var countryName = data[countryCode];
+                                                $('#country-contact-details').append('<option value="' + countryCode + '">' + countryName + '</option>');
+                                            }
+                                        },
+                                        error: function (xhr, status, error) {
+                                            console.error("Error: " + error);
+                                        }
+                                    });
+                                </script>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="mobile-number">Mobile / Cell phone number *</label>
+                            <input type="text" class="form-control" id="mobile-number" name="mobile number" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="other-mobile-number">Other phone number</label>
+                            <input type="text" class="form-control" id="other-mobile-number" name="other-mobile number">
+                        </div>
+
+                        <br />
+                        <h3>Mailing Address</h3>
+
+                        <br />
+                        <h3>Next of Kin Details</h3>
+
+                        <div class="form-group">
+                            <label for="kin-title">Title *</label>
+                            <select class="form-control form-select" id="kin-title" name="title" required>
+                                <option selected disabled></option>
+                                <option>Mr</option>
+                                <option>Miss</option>
+                                <option>Mrs</option>
+                                <option>Ms</option>
+                                <option>Dr</option>
+                                <option>Prof</option>
+                                <option>Gender Neutral</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="kin-forename">Forename *</label>
+                            <input type="text" class="form-control" id="kin-forename" name="kin-forename" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="kin-surname">Surname *</label>
+                            <input type="text" class="form-control" id="kin-surname" name="kin-surname" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="relationshp">Relationshp *</label>
+                            <select class="form-control form-select" id="relationshp" name="relationshp" required>
+                                <option selected disabled></option>
+                                <option>Child e.g. daughter/son</option>
+                                <option>Friend</option>
+                                <option>Grandparent</option>
+                                <option>Other</option>
+                                <option>Parent</option>
+                                <option>Partner e.g. husband/wife</option>
+                                <option>Sibling e.g. sister/brother</option>
+                            </select>
+                        </div>
+
+                        <div class="d-flex">
+                            <button class="btn btn-outline-primary">Autofill using Home Address</button>
+                            <button class="btn btn-outline-primary" style="margin-left: 300px;">Autofill using Mailing Address</button>
+                        </div>
+                        <br />
+
+                        <div class="form-group">
+                            <label for="country-contact-details-kin">Country *</label>
+                            <select class="form-control form-select" id="country-contact-details-kin" name="country-contact-details-kin" required>
+                                <option selected disabled></option>
+
+                                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                                <script>
+                                    $.ajax({
+                                        url: '/Students/GetCountries',
+                                        dataType: 'json',
+                                        success: function (response) {
+                                            var data = typeof response === 'string' ? JSON.parse(response) : response;
+                                            console.log(data);
+                                            $('#country-contact-details-kin').empty();
+
+                                            var sortedKeys = Object.keys(data).sort(function (a, b) {
+                                                return data[a].localeCompare(data[b]);
+                                            });
+
+                                            for (var i = 0; i < sortedKeys.length; i++) {
+                                                var countryCode = sortedKeys[i];
+                                                var countryName = data[countryCode];
+                                                $('#country-contact-details-kin').append('<option value="' + countryCode + '">' + countryName + '</option>');
+                                            }
+                                        },
+                                        error: function (xhr, status, error) {
+                                            console.error("Error: " + error);
+                                        }
+                                    });
+                                </script>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="mobile-number">Mobile / Cell phone number *</label>
+                            <input type="text" class="form-control" id="mobile-number" name="mobile number" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="other-mobile-number">Other phone number</label>
+                            <input type="text" class="form-control" id="other-mobile-number" name="other-mobile number">
+                        </div>
+                        <div class="form-group">
+                            <label for="kin-email">Email Address</label>
+                            <input type="text" class="form-control" id="kin-email" name="kin-email">
+                        </div>
+                        <br />
+                        <div class="d-flex">
+                            <p>*Denotes a mandatory field</p>
+                            <button type="submit" class="btn btn-primary" style="margin-left: 500px;">Save and Continue</button>
+                        </div>
                     </div>
                 </form>
 
-
                 <form id="educational-details-form" asp-controller="Student" asp-action="SaveEducationalDetails">
                     <div id="educational-details" class="form-section">
-                        <h3>Educational Details</h3>
+                        <h3>Current Educational Details</h3>
                         <!-- Add educational details fields here -->
-                        <!-- ... -->
-                        <button type="submit" class="btn btn-primary">Save and Continue</button>
+                        <div class="form-group">
+                            <label for="exchange-partner">Exchange Partner Institution</label>
+                            <select class="form-control form-select" id="exchange-partner" name="exchange-partner">
+                                <option selected disabled></option>
+                                <option>Institution</option>
+                                <option>Institution</option>
+                                <option>Institution</option>
+                                <option>Institution</option>
+                                <option>Institution</option>
+                                <option>Institution</option>
+                                <option>Institution</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="degree-programme-name">Exact name of degree programme * (e.g. BA Economics)</label>
+                            <input type="text" class="form-control" id="degree-programme-name" name="degree-programme-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="totallength">Total length of degree programme in years *</label>
+                            <select class="form-control form-select" id="totallength" name="totallength">
+                                <option selected disabled></option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10+</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="expected-graduation">Expected month and year of graduation *</label>
+                            <input type="date" class="form-control" id="expected-graduation" name="expected-graduation" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="year-semester">Year and Semester of study upon joining the Exchange Programme *</label>
+                            <select class="form-control form-select" id="year-semester" name="year-semester">
+                                <option selected disabled></option>
+                                <option>Year 1, Semester 1</option>
+                                <option>Year 1, Semester 2</option>
+                                <option>Year 2, Semester 1</option>
+                                <option>Year 2, Semester 2</option>
+                                <option>Year 3, Semester 1</option>
+                                <option>Year 3, Semester 2</option>
+                                <option>Year 4, Semester 1</option>
+                                <option>Year 4, Semester 2</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="upload-transcript">Please upload an academic transcript from your current studies, showing all grades and credits achieved to date along with your overall grade average.*</label>
+                            <input type="file" class="form-control" id="upload-transcript" name="upload-transcript">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="not-listed-class">Are there any classes you are studying which are not listed on your transcript? *</label>
+                            <select class="form-control form-select" id="not-listed-class" name="not-listed-class">
+                                <option selected disabled></option>
+                                <option>Yes</option>
+                                <option>No</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="firstlang">Is English your first language? *</label>
+                            <select class="form-control form-select" id="firstlang" name="firstlang">
+                                <option selected disabled></option>
+                                <option>Yes</option>
+                                <option>No</option>
+                            </select>
+                        </div>
+                        <br /><br />
+                        <div class="d-flex">
+                            <p>*Denotes a mandatory field</p>
+                            <button type="submit" class="btn btn-primary" style="margin-left: 500px;">Save and Continue</button>
+                        </div>
                     </div>
                 </form>
             </form>
