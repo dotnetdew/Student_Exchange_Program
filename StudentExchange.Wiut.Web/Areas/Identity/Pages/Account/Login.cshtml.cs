@@ -130,7 +130,7 @@ namespace StudentExchange.Wiut.Web.Areas.Identity.Pages.Account
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    ModelState.AddModelError(string.Empty, "Invalid login attempt. Maybe your account not confirmed. Press resend email confirmation");
                     return Page();
                 }
             }
