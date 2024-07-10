@@ -15,18 +15,21 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using StudentExchange.Wiut.Web.Models;
+using System.Security.Claims;
 
 namespace StudentExchange.Wiut.Web.Areas.Identity.Pages.Account
 {
     public class LoginModel : PageModel
     {
         private readonly SignInManager<Student> _signInManager;
+        private readonly UserManager<Student> _userManager;
         private readonly ILogger<LoginModel> _logger;
 
-        public LoginModel(SignInManager<Student> signInManager, ILogger<LoginModel> logger)
+        public LoginModel(SignInManager<Student> signInManager, ILogger<LoginModel> logger, UserManager<Student> userManager)
         {
             _signInManager = signInManager;
             _logger = logger;
+            _userManager = userManager;
         }
 
         /// <summary>
@@ -116,7 +119,11 @@ namespace StudentExchange.Wiut.Web.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-                    return LocalRedirect("~/Students/ApplicationChecklist");
+
+                    var user_id = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+                    return LocalRedirect(Url.Content("~/Students/SavePersonalDetails") + $"?studentId={user_id}");
+                    //return RedirectToAction("~/Students/SavePersonalDetails", new { studentId = student.Id});
                     //return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)

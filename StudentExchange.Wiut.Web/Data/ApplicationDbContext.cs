@@ -12,5 +12,6 @@ namespace StudentExchange.Wiut.Web.Data
         }
 
         public DbSet<Student> Students { get; set; }
+        public DbSet<PersonalDetails> PersonalDetails { get; set; }
     }
 }

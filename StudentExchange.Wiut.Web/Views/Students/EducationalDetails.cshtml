@@ -1,0 +1,148 @@
+﻿<style>
+    .form-section {
+        display: none;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
+
+        .form-section h3 {
+            margin-top: 0;
+            font-weight: bold;
+            color: #337ab7;
+        }
+
+        .form-section.active {
+            display: block;
+        }
+
+        .form-section .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-section .form-control {
+            height: 40px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+        }
+
+        .form-section .btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            background-color: #337ab7;
+            color: #fff;
+            cursor: pointer;
+        }
+
+            .form-section .btn:hover {
+                background-color: #23527c;
+            }
+
+    #personal-details {
+        border-color: #337ab7;
+    }
+
+    #contact-details {
+        border-color: #5cb85c;
+    }
+
+    #educational-details {
+        border-color: #d9534f;
+    }
+</style>
+
+<form id="educational-details-form" asp-controller="Student" asp-action="SaveEducationalDetails">
+    <div id="educational-details" class="form-section">
+        <h3>Current Educational Details</h3>
+        <!-- Add educational details fields here -->
+        <div class="form-group">
+            <label for="exchange-partner">Exchange Partner Institution</label>
+            <select class="form-control form-select" id="exchange-partner" name="exchange-partner">
+                <option selected disabled></option>
+                <option>Institution</option>
+                <option>Institution</option>
+                <option>Institution</option>
+                <option>Institution</option>
+                <option>Institution</option>
+                <option>Institution</option>
+                <option>Institution</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="degree-programme-name">Exact name of degree programme * (e.g. BA Economics)</label>
+            <input type="text" class="form-control" id="degree-programme-name" name="degree-programme-name" required>
+        </div>
+        <div class="form-group">
+            <label for="totallength">Total length of degree programme in years *</label>
+            <select class="form-control form-select" id="totallength" name="totallength">
+                <option selected disabled></option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10+</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="expected-graduation">Expected month and year of graduation *</label>
+            <input type="date" class="form-control" id="expected-graduation" name="expected-graduation" required>
+        </div>
+
+        <div class="form-group">
+            <label for="year-semester">Year and Semester of study upon joining the Exchange Programme *</label>
+            <select class="form-control form-select" id="year-semester" name="year-semester">
+                <option selected disabled></option>
+                <option>Year 1, Semester 1</option>
+                <option>Year 1, Semester 2</option>
+                <option>Year 2, Semester 1</option>
+                <option>Year 2, Semester 2</option>
+                <option>Year 3, Semester 1</option>
+                <option>Year 3, Semester 2</option>
+                <option>Year 4, Semester 1</option>
+                <option>Year 4, Semester 2</option>
+                <option>Other</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="upload-transcript">Please upload an academic transcript from your current studies, showing all grades and credits achieved to date along with your overall grade average.*</label>
+            <input type="file" class="form-control" id="upload-transcript" name="upload-transcript">
+        </div>
+
+        <div class="form-group">
+            <label for="not-listed-class">Are there any classes you are studying which are not listed on your transcript? *</label>
+            <select class="form-control form-select" id="not-listed-class" name="not-listed-class">
+                <option selected disabled></option>
+                <option>Yes</option>
+                <option>No</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="firstlang">Is English your first language? *</label>
+            <select class="form-control form-select" id="firstlang" name="firstlang">
+                <option selected disabled></option>
+                <option>Yes</option>
+                <option>No</option>
+            </select>
+        </div>
+        <br /><br />
+        <div class="d-flex">
+            <p>*Denotes a mandatory field</p>
+            <button type="submit" class="btn btn-primary" style="margin-left: 500px;">Save and Continue</button>
+        </div>
+    </div>
+</form>

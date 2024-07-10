@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StudentExchange.Wiut.Web.Data;
 
@@ -11,9 +12,11 @@ using StudentExchange.Wiut.Web.Data;
 namespace StudentExchange.Wiut.Web.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240710111841_PersonalStudentPropertyChanged")]
+    partial class PersonalStudentPropertyChanged
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -157,69 +160,6 @@ namespace StudentExchange.Wiut.Web.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
-                });
-
-            modelBuilder.Entity("StudentExchange.Wiut.Web.Models.ContactDetails", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Country")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("EmailAddress")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MobilePhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NextOfKinCountry")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NextOfKinForeName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NextOfKinMobilePhone")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NextOfKinOtherPhone")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NextOfKinSurName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NextOfKinTitle")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("OtherPhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Relationship")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("StudentId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("StudentId");
-
-                    b.ToTable("ContactDetails");
                 });
 
             modelBuilder.Entity("StudentExchange.Wiut.Web.Models.PersonalDetails", b =>
@@ -443,17 +383,6 @@ namespace StudentExchange.Wiut.Web.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("StudentExchange.Wiut.Web.Models.ContactDetails", b =>
-                {
-                    b.HasOne("StudentExchange.Wiut.Web.Models.Student", "Student")
-                        .WithMany("ContactDetails")
-                        .HasForeignKey("StudentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Student");
-                });
-
             modelBuilder.Entity("StudentExchange.Wiut.Web.Models.PersonalDetails", b =>
                 {
                     b.HasOne("StudentExchange.Wiut.Web.Models.Student", "Student")
@@ -467,8 +396,6 @@ namespace StudentExchange.Wiut.Web.Data.Migrations
 
             modelBuilder.Entity("StudentExchange.Wiut.Web.Models.Student", b =>
                 {
-                    b.Navigation("ContactDetails");
-
                     b.Navigation("PersonalDetails");
                 });
 #pragma warning restore 612, 618

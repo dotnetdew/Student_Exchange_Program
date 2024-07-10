@@ -29,7 +29,7 @@ public class MailRuEmailSender : IEmailSender
         smtpClient.EnableSsl = true;
         smtpClient.Credentials = new NetworkCredential(email, password);
         smtpClient.Timeout = 30000;
-        //password  mB4jaDR0pfmZvdfiPAV5 smtp.mail.ru
+        //password  N3NM7iBYc0wBc40tfsaL smtp.mail.ru
 
         await smtpClient.SendMailAsync(message);
     }

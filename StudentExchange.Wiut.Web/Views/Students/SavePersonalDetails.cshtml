@@ -1,0 +1,205 @@
+﻿@model StudentExchange.Wiut.Web.ViewModels.CreatePersonalDetailsVM
+
+<style>
+    .form-section {
+        display: none;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
+
+        .form-section h3 {
+            margin-top: 0;
+            font-weight: bold;
+            color: #337ab7;
+        }
+
+        .form-section.active {
+            display: block;
+        }
+
+        .form-section .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-section .form-control {
+            height: 40px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+        }
+
+        .form-section .btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            background-color: #337ab7;
+            color: #fff;
+            cursor: pointer;
+        }
+
+            .form-section .btn:hover {
+                background-color: #23527c;
+            }
+
+    #personal-details {
+        border-color: #337ab7;
+    }
+
+    #contact-details {
+        border-color: #5cb85c;
+    }
+
+    #educational-details {
+        border-color: #d9534f;
+    }
+</style>
+
+<form asp-action="SavePersonalDetails" method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="StudentId" class="form-control"/>
+
+    <div id="personal-details" class="form-section active">
+        <h3>Personal Details</h3>
+        <!-- Add personal details fields here -->
+        <div class="form-group">
+            <label asp-for="Title" class="control-label">Title *</label>
+            <select asp-for="Title" class="form-control form-select" id="title" name="Title">
+                <option selected disabled></option>
+                <option>Mr</option>
+                <option>Miss</option>
+                <option>Mrs</option>
+                <option>Ms</option>
+                <option>Dr</option>
+                <option>Prof</option>
+                <option>Gender Neutral</option>
+            </select>
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="ForeName" class="control-label">Forename *</label>
+            <input asp-for="ForeName" type="text" class="form-control" id="forename" name="ForeName">
+            <span asp-validation-for="ForeName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="SecondForeName">Second Forename</label>
+            <input asp-for="SecondForeName" type="text" class="form-control" id="second-forename" name="secondForeName">
+        </div>
+        <div class="form-group">
+            <label for="ThirdForeName">Third Forename</label>
+            <input asp-for="ThirdForeName" type="text" class="form-control" id="third-forename" name="thirdForeName">
+        </div>
+        <div class="form-group">
+            <label for="familyname">Family Name *</label>
+            <input for="FamilyName" type="text" class="form-control" id="familyname" name="FamilyName" required>
+            <span asp-validation-for="FamilyName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="PrefferedName">Preferred Name</label>
+            <input asp-for="PrefferedName" type="text" class="form-control" id="preferred-name" name="prefferedName">
+        </div>
+        <div class="form-group">
+            <label asp-for="PreviousFamilyName">Previous Family Name</label>
+            <input asp-for="PreviousFamilyName" type="text" class="form-control" id="previous-family-name" name="PreviousFamilyName">
+        </div>
+        <div class="form-group">
+            <label asp-for="DateOfBirth">Date of Birth *</label>
+            <input asp-for="DateOfBirth" type="date" value="" class="form-control" id="dob" name="DateOfBirth">
+            <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Gender">Gender *</label>
+            <select asp-for="Gender" class="form-control form-select" id="gender" name="Gender">
+                <option selected disabled></option>
+                <option>Male</option>
+                <option>Female</option>
+                <option>Not specified</option>
+            </select>
+            <span asp-validation-for="Gender" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="UniversityStudentId">Univerity Student ID *</label>
+            <input asp-for="UniversityStudentId" type="text" class="form-control" id="preferred-name" name="UniversityStudentId">
+            <span asp-validation-for="UniversityStudentId" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="CountryOfBirth">Country of birth *</label>
+            <select asp-for="CountryOfBirth" class="form-control form-select" id="country_of_birth" name="CountryOfBirth">
+                <option value="" selected disabled></option>
+
+                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                <script>
+                    $.ajax({
+                        url: '/Students/GetCountries',
+                        dataType: 'json',
+                        success: function (response) {
+                            var data = typeof response === 'string' ? JSON.parse(response) : response;
+                            console.log(data);
+                            $('#country_of_birth').empty();
+
+                            var sortedKeys = Object.keys(data).sort(function (a, b) {
+                                return data[a].localeCompare(data[b]);
+                            });
+
+                            for (var i = 0; i < sortedKeys.length; i++) {
+                                var countryCode = sortedKeys[i];
+                                var countryName = data[countryCode];
+                                $('#country_of_birth').append('<option value="' + countryName + '">' + countryName + '</option>');
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            console.error("Error: " + error);
+                        }
+                    });
+                </script>
+            </select>
+            <span asp-validation-for="CountryOfBirth" class="text-danger"></span>
+        </div>
+        <!-- Add more personal details fields as needed -->
+        <div class="form-group">
+            <label for="nationality">Nationality *</label>
+            <input asp-for="Nationality" type="text" class="form-control" id="nationality" name="Nationality" placeholder="ex. German" required>
+            <span asp-validation-for="Nationality" class="text-danger"></span>
+        </div>
+
+        <br />
+        <h3>Passport Details</h3>
+        <p>This information can be provided at a later date</p>
+
+        <div class="form-group">
+            <label asp-for="PassportNumber">Passport number</label>
+            <input asp-for="PassportNumber" type="text" class="form-control" id="passport-number" name="PassportNumber" required>
+            <span asp-validation-for="PassportNumber" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="DateOfIssue">Date of issue</label>
+            <input asp-for="DateOfIssue" type="date" value="" class="form-control" id="date-of-issue" name="DateOfIssue">
+            <span asp-validation-for="DateOfIssue" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="DateOfExpiry">Date of expiry</label>
+            <input asp-for="DateOfExpiry" type="date" value="" class="form-control" id="date-of-expiry" name="DateOfExpiry">
+            <span asp-validation-for="DateOfIssue" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="upload-passport">Upload passport</label>
+            <input asp-for="PassportFile" type="file" class="form-control" id="upload-passport" name="PassportFile">
+            <span asp-validation-for="PassportFile" class="text-danger"></span>
+        </div>
+
+        <br /><br />
+        <div class="d-flex">
+            <p>*Denotes a mandatory field</p>
+            <button type="submit" class="btn btn-primary" style="margin-left: 500px;">Save and Continue</button>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
