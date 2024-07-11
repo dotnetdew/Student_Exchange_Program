@@ -13,15 +13,21 @@ public class StudentsController : Controller
 {
     private readonly UserManager<Student> _userManager;
     private readonly IRepository<PersonalDetails> _personalDetailsRepository;
+    private readonly IRepository<ContactDetails> _contactDetailsRepository;
+    private readonly IRepository<EducationalDetails> _educationalDetailsRepository;
     private readonly IRepository<Student> _studentdRepository;
     public StudentsController(
         UserManager<Student> userManager, 
-        IRepository<PersonalDetails> personalDetailsRepository, 
-        IRepository<Student> studentdRepository)
+        IRepository<PersonalDetails> personalDetailsRepository,
+        IRepository<ContactDetails> contactDetailsRepository,
+        IRepository<Student> studentdRepository,
+        IRepository<EducationalDetails> educationalDetailsRepository)
     {
         _userManager = userManager;
         _personalDetailsRepository = personalDetailsRepository;
         _studentdRepository = studentdRepository;
+        _contactDetailsRepository = contactDetailsRepository;
+        _educationalDetailsRepository = educationalDetailsRepository;
     }
 
     public IActionResult MyApplications()
@@ -90,9 +96,13 @@ public class StudentsController : Controller
                 };
                 _personalDetailsRepository.Add(personalDetails);
                 _personalDetailsRepository.Save();
+
+                return RedirectToAction("SaveContactDetails", new { studentId = vm.StudentId });
             }
         }
-        return RedirectToAction("SaveContactDetails", new {studentId = vm.StudentId });
+        else
+            return View();
+        
     }
 
     [HttpGet]
@@ -103,12 +113,65 @@ public class StudentsController : Controller
         return View(contactVM);
     }
 
-    //[HttpPost]
-    //public IActionResult SaveContactDetails(CreateContactDetailsVM vm)
-    //{
-    //    if (ModelState.IsValid)
-    //    {
+    [HttpPost]
+    public IActionResult SaveContactDetails(CreateContactDetailsVM vm)
+    {
+        if (ModelState.IsValid)
+        {
+            var contactDetails = new ContactDetails()
+            {
+                Country = vm.Country,
+                MobilePhoneNumber = vm.MobilePhoneNumber,
+                OtherPhoneNumber = vm.OtherPhoneNumber,
+                NextOfKinTitle = vm.NextOfKinTitle,
+                NextOfKinForeName = vm.NextOfKinForeName,
+                NextOfKinSurName = vm.NextOfKinSurName,
+                Relationship = vm.Relationship,
+                NextOfKinCountry = vm.NextOfKinCountry,
+                NextOfKinMobilePhone = vm.NextOfKinMobilePhone,
+                NextOfKinOtherPhone = vm.NextOfKinOtherPhone,
+                EmailAddress = vm.EmailAddress,
+                StudentId = vm.StudentId
+            };
+            _contactDetailsRepository.Add(contactDetails);
+            _contactDetailsRepository.Save();
 
-    //    }
-    //}
+            return View(vm);
+        }
+        else
+            return View();
+    }
+
+    [HttpGet]
+    public IActionResult SaveEducationalDetails(string studentId)
+    {
+        var student = _studentdRepository.GetById(studentId);
+        var educationalVM = new CreateEducationalDetailsVM() { StudentId = studentId };
+        return View(educationalVM);
+    }
+
+    [HttpPost]
+    public IActionResult SaveEducationalDetails(CreateEducationalDetailsVM vm)
+    {
+        if (ModelState.IsValid)
+        {
+            var educationalDetails = new EducationalDetails()
+            {
+                ExchangePartnerInstitution = vm.ExchangePartnerInstitution,
+                ExactNameOfDegreeProgramme = vm.ExactNameOfDegreeProgramme,
+                TotalLengthOfDegreeProgrammeInYears = vm.TotalLengthOfDegreeProgrammeInYears,
+                ExpectedMonthOfGraduation = vm.ExpectedMonthOfGraduation,
+                ExpectedYearOfGraduation = vm.ExpectedYearOfGraduation,
+                IsEnglishFirstLanguage = vm.IsEnglishFirstLanguage,
+                StudentId = vm.StudentId
+            };
+
+            _educationalDetailsRepository.Add(educationalDetails);
+            _educationalDetailsRepository.Save();
+
+            return View(vm);
+        }
+        else
+            return View();
+    }
 }

@@ -60,11 +60,13 @@
     }
 </style>
 
-<form asp-action="SavePersonalDetails" method="post" enctype="multipart/form-data">
+<form asp-action="SaveContactDetails" method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <input type="hidden" asp-for="StudentId" class="form-control" />
+    <input type="hidden" asp-for="StudentId" class="form-control"/>
 
     <div id="contact-details" class="form-section active">
+        <h3>Contact details</h3>
+        <hr />
         <h3>Permanent Home Address</h3>
         <!-- Add contact details fields here -->
         <div class="form-group">
@@ -80,7 +82,7 @@
                         success: function (response) {
                             var data = typeof response === 'string' ? JSON.parse(response) : response;
                             console.log(data);
-                            $('#country_of_birth').empty();
+                            $('#country_contact').empty();
 
                             var sortedKeys = Object.keys(data).sort(function (a, b) {
                                 return data[a].localeCompare(data[b]);
@@ -89,7 +91,7 @@
                             for (var i = 0; i < sortedKeys.length; i++) {
                                 var countryCode = sortedKeys[i];
                                 var countryName = data[countryCode];
-                                $('#country_of_birth').append('<option value="' + countryName + '">' + countryName + '</option>');
+                                $('#country_contact').append('<option value="' + countryName + '">' + countryName + '</option>');
                             }
                         },
                         error: function (xhr, status, error) {
@@ -162,7 +164,7 @@
                         success: function (response) {
                             var data = typeof response === 'string' ? JSON.parse(response) : response;
                             console.log(data);
-                            $('#country_of_birth').empty();
+                            $('#NextOfKinCountry').empty();
 
                             var sortedKeys = Object.keys(data).sort(function (a, b) {
                                 return data[a].localeCompare(data[b]);
@@ -171,7 +173,7 @@
                             for (var i = 0; i < sortedKeys.length; i++) {
                                 var countryCode = sortedKeys[i];
                                 var countryName = data[countryCode];
-                                $('#country_of_birth').append('<option value="' + countryName + '">' + countryName + '</option>');
+                                $('#NextOfKinCountry').append('<option value="' + countryName + '">' + countryName + '</option>');
                             }
                         },
                         error: function (xhr, status, error) {
@@ -200,7 +202,8 @@
         <br /><br />
         <div class="d-flex">
             <p>*Denotes a mandatory field</p>
-            <button type="submit" class="btn btn-primary" style="margin-left: 500px;">Save and Continue</button>
+            <button type="submit" class="btn btn-primary" style="margin-left: 600px; width: 100px;">Save</button>
+            <a asp-action="SaveEducationalDetails" asp-route-studentId="@Model.StudentId" class="btn btn-primary" style="margin-left: 100px; width: 100px;">Next</a>
         </div>
     </div>
 </form>

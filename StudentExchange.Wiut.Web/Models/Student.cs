@@ -17,5 +17,6 @@ namespace StudentExchange.Wiut.Web.Models
         public DateTime DateOfBirth { get; set; }
         public ICollection<PersonalDetails> PersonalDetails { get; set; }
         public ICollection<ContactDetails> ContactDetails { get; set; }
+        public ICollection<EducationalDetails> EducationalDetails { get; set; }
     }
 }
