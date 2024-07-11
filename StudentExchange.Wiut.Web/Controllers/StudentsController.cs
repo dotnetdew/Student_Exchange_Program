@@ -15,19 +15,25 @@ public class StudentsController : Controller
     private readonly IRepository<PersonalDetails> _personalDetailsRepository;
     private readonly IRepository<ContactDetails> _contactDetailsRepository;
     private readonly IRepository<EducationalDetails> _educationalDetailsRepository;
+    private readonly IRepository<DisabilityLearningSupport> _disabilityLearningSupportRepository;
+    private readonly IRepository<Housing> _housingRepository;
     private readonly IRepository<Student> _studentdRepository;
     public StudentsController(
         UserManager<Student> userManager, 
         IRepository<PersonalDetails> personalDetailsRepository,
         IRepository<ContactDetails> contactDetailsRepository,
         IRepository<Student> studentdRepository,
-        IRepository<EducationalDetails> educationalDetailsRepository)
+        IRepository<EducationalDetails> educationalDetailsRepository,
+        IRepository<DisabilityLearningSupport> disabilityLearningSupportRepository,
+        IRepository<Housing> housingRepository)
     {
         _userManager = userManager;
         _personalDetailsRepository = personalDetailsRepository;
         _studentdRepository = studentdRepository;
         _contactDetailsRepository = contactDetailsRepository;
         _educationalDetailsRepository = educationalDetailsRepository;
+        _disabilityLearningSupportRepository = disabilityLearningSupportRepository;
+        _housingRepository = housingRepository;
     }
 
     public IActionResult MyApplications()
@@ -173,5 +179,69 @@ public class StudentsController : Controller
         }
         else
             return View();
+    }
+
+    [HttpGet]
+    public IActionResult SaveDisabilityLearningSupport(string studentId)
+    {
+        var student = _studentdRepository.GetById(studentId);
+        var disablityLearningVM = new CreateDisabilityLearningSupportVM() { StudentId = studentId };
+        return View(disablityLearningVM);
+    }
+
+    [HttpPost]
+    public IActionResult SaveDisabilityLearningSupport(CreateDisabilityLearningSupportVM vm)
+    {
+        if (ModelState.IsValid)
+        {
+            var disabilityDetails = new DisabilityLearningSupport()
+            {
+                HaveADisablity = vm.HaveADisablity,
+                StudentId = vm.StudentId
+            };
+
+            _disabilityLearningSupportRepository.Add(disabilityDetails);
+            _disabilityLearningSupportRepository.Save();
+
+            return View(vm);
+        }
+        else
+            return View();
+    }
+
+    [HttpGet]
+    public IActionResult SaveHousingDetails(string studentId)
+    {
+        var student = _studentdRepository.GetById(studentId);
+        var housingVM = new CreateHousingVM() { StudentId = studentId };
+        return View(housingVM);
+    }
+
+    [HttpPost]
+    public IActionResult SaveHousingDetails(CreateHousingVM vm)
+    {
+        if (ModelState.IsValid)
+        {
+            var housing = new Housing()
+            {
+                WishToApplyForHousingInUniversity = vm.WishToApplyForHousingInUniversity,
+                StudentId = vm.StudentId
+            };
+
+            _housingRepository.Add(housing);
+            _housingRepository.Save();
+
+            return View(vm);
+        }
+        else
+            return View();
+    }
+
+    [HttpGet]
+    public IActionResult SaveSubmission(string studentId)
+    {
+        var student = _studentdRepository.GetById(studentId);
+        //var housingVM = new CreateHousingVM() { StudentId = studentId };
+        return View();
     }
 }

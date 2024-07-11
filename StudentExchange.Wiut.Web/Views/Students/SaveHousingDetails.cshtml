@@ -1,0 +1,150 @@
+﻿@model StudentExchange.Wiut.Web.ViewModels.CreateHousingVM
+
+<style>
+    .form-section {
+        display: none;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
+
+        .form-section h3 {
+            margin-top: 0;
+            font-weight: bold;
+            color: #337ab7;
+        }
+
+        .form-section.active {
+            display: block;
+        }
+
+        .form-section .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-section .form-control {
+            height: 40px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+        }
+
+        .form-section .btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            background-color: #337ab7;
+            color: #fff;
+            cursor: pointer;
+        }
+
+            .form-section .btn:hover {
+                background-color: #23527c;
+            }
+
+    #personal-details {
+        border-color: #337ab7;
+    }
+
+    #contact-details {
+        border-color: #5cb85c;
+    }
+
+    #educational-details {
+        border-color: #d9534f;
+    }
+    .housing-location {
+        margin-left: 20px;
+        display: inline-block;
+        vertical-align: top;
+        margin-right: 20px;
+    }
+
+    .housing-location img {
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .housing-location .location-details {
+        font-size: 14px;
+        margin-top: 10px;
+    }
+
+    .housing-location .location-details b {
+        font-weight: bold;
+        color: #337ab7;
+    }
+</style>
+
+<form asp-action="SaveHousingDetails" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="StudentId" class="form-control" />
+
+    <div id="personal-details" class="form-section active">
+        <h3>Housing</h3>
+        <hr />
+
+        <div class="form-group">
+            <label asp-for="WishToApplyForHousingInUniversity" class="control-label">Do you wish to apply for a place in University of Westminster housing *</label>
+            <select asp-for="WishToApplyForHousingInUniversity" class="form-control form-select" id="WishToApplyForHousingInUniversity" name="WishToApplyForHousingInUniversity">
+                <option selected disabled></option>
+                <option>Yes</option>
+                <option>No</option>
+            </select>
+            <span asp-validation-for="WishToApplyForHousingInUniversity" class="text-danger"></span>
+        </div>
+
+        <br />
+
+                <div class="d-flex" style="margin: 20px;">
+            <div class="housing-location">
+                <a href="@Url.Action("Location1", "Housing", new { studentId = Model.StudentId })">
+                    <img src="~/images/dormitory1.jpg" alt="Dormitory 1" style="width: 200px; height: 150px;" />
+                </a>
+                <div class="location-details">
+                    <b>Location 1:</b> 1A Yangi zamon Street<br />
+                    <b>For:</b> Undergraduate and postgraduate students<br />
+                    <b>Phone number:</b> +998712387481
+                </div>
+            </div>
+
+            <div class="housing-location">
+                <a href="@Url.Action("Location2", "Housing", new { studentId = Model.StudentId })">
+                    <img src="~/images/dormitory2.jpg" alt="Dormitory 2" style="width: 200px; height: 150px;" />
+                </a>
+                <div class="location-details">
+                    <b>Location 2:</b> 9 Turk Kurgan Street<br />
+                    <b>For:</b> Undergraduate and postgraduate students<br />
+                    <b>Phone number:</b> +998712387482
+                </div>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <h4>Housing Information</h4>
+            <ul>
+                <li><b>Yangi Zamon (YZ) Hall:</b> Open for new and continuing undergraduates on courses of the School of Law, Technology and Education (SOLTE)</li>
+                <li><b>Turk Kurgan (TK) Hall:</b> Hosts new and continuing undergraduates on courses of the School of Business and Economics (SOBE)</li>
+            </ul>
+            <p><b>Priority:</b> Priority in registration is given to 1st year students (CIFS). The remaining places are allocated according to a quota among undergraduate students, with priority for lower levels.</p>
+            <p><b>Eligibility:</b> You can apply for a place in our halls of residence if you have completed enrollment for the current or upcoming academic term as a full-time student.</p>
+        </div>
+        <br /><br />
+
+        <div class="d-flex">
+            <p>*Denotes a mandatory field</p>
+            <button type="submit" class="btn btn-primary" style="margin-left: 600px; width: 100px;">Save</button>
+            <a asp-action="SaveSubmission" asp-route-studentId="@Model.StudentId" class="btn btn-primary" style="margin-left: 100px; width: 100px;">Next</a>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+}

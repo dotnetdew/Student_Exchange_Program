@@ -1,0 +1,103 @@
+﻿@model StudentExchange.Wiut.Web.ViewModels.CreateDisabilityLearningSupportVM
+
+<style>
+    .form-section {
+        display: none;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
+
+        .form-section h3 {
+            margin-top: 0;
+            font-weight: bold;
+            color: #337ab7;
+        }
+
+        .form-section.active {
+            display: block;
+        }
+
+        .form-section .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-section .form-control {
+            height: 40px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+        }
+
+        .form-section .btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            background-color: #337ab7;
+            color: #fff;
+            cursor: pointer;
+        }
+
+            .form-section .btn:hover {
+                background-color: #23527c;
+            }
+
+    #personal-details {
+        border-color: #337ab7;
+    }
+
+    #contact-details {
+        border-color: #5cb85c;
+    }
+
+    #educational-details {
+        border-color: #d9534f;
+    }
+</style>
+
+<form asp-action="SaveDisabilityLearningSupport" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="StudentId" class="form-control"/>
+
+    <div id="personal-details" class="form-section active">
+        <h3>Disability Learning Support</h3>
+        <p>The term 'disability' covers a range of conditions, including:</p>
+        <ul>
+            <li>dyslexia</li>
+            <li>mental health conditions, such as depression and anxiety</li>
+            <li>visual impairments</li>
+            <li>autism spectrum conditions</li>
+            <li>long-term medical conditions, such as epilepsy or Chronic Fatigue Syndrome</li>
+        </ul>
+
+        <p>Our Disability Learning Support (DLS) Team may be able to offer confidential support to help you make the most of your studies.</p>
+        <p>If you have a disability we strongly encourage you to declare it as soon as possible so that any available support can be put in place.</p>
+        <!-- Add personal details fields here -->
+        <div class="form-group">
+            <label asp-for="HaveADisablity" class="control-label">Do you have a disability or condition that affects your studies? *</label>
+            <select asp-for="HaveADisablity" class="form-control form-select" id="HaveADisablity" name="HaveADisablity">
+                <option selected disabled></option>
+                <option>Yes</option>
+                <option>No</option>
+            </select>
+            <span asp-validation-for="HaveADisablity" class="text-danger"></span>
+            <p>As you have indicated yes to the question above, to see what support may be available to you, information on how to register and provide supporting documentary evidence via a secure online system will be provided after your application has been processed.</p>
+        </div>
+
+        <br /><br />
+        <div class="d-flex">
+            <p>*Denotes a mandatory field</p>
+            <button type="submit" class="btn btn-primary" style="margin-left: 600px; width: 100px;">Save</button>
+            <a asp-action="SaveHousingDetails" asp-route-studentId="@Model.StudentId" class="btn btn-primary" style="margin-left: 100px; width: 100px;">Next</a>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
