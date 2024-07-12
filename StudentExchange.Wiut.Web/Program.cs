@@ -16,7 +16,7 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 //Email Service config
 builder.Services.AddTransient<IEmailSender, MailRuEmailSender>(provider =>
-    new MailRuEmailSender("exchange@wiut.uz", "yS8SRZhFwzfG2Uy8aybE"));
+    new MailRuEmailSender("exchange@wiut.uz", "2873KLMS365"));
 
 builder.Services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
 

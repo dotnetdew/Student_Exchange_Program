@@ -11,7 +11,7 @@ public class ContactDetails
     public string Country { get; set; }
     [Required]
     public string MobilePhoneNumber { get; set; }
-    public string OtherPhoneNumber { get; set; }
+    public string? OtherPhoneNumber { get; set; }
     [Required]
     public string NextOfKinTitle {  get; set; }
     public string NextOfKinForeName { get; set; }
@@ -23,8 +23,8 @@ public class ContactDetails
     public string NextOfKinCountry { get; set; }
     [Required]
     public string NextOfKinMobilePhone { get; set; }
-    public string NextOfKinOtherPhone { get; set; }
-    public string EmailAddress { get; set; }
+    public string? NextOfKinOtherPhone { get; set; }
+    public string? EmailAddress { get; set; }
 
     //Relationship
     public string StudentId { get; set; }

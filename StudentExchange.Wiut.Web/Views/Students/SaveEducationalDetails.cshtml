@@ -1,5 +1,15 @@
 ﻿@model StudentExchange.Wiut.Web.ViewModels.CreateEducationalDetailsVM
 
+<link href="~/css/toastr.min.css" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="~/js/toastr.min.js"></script>
+
+@if (ViewBag.Saved != null)
+{
+    <script>
+        toastr.success("Successfully saved!");
+    </script>
+}
 <style>
     .form-section {
         display: none;

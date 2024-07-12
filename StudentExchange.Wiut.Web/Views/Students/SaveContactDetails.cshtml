@@ -1,5 +1,15 @@
 ﻿@model StudentExchange.Wiut.Web.ViewModels.CreateContactDetailsVM
 
+<link href="~/css/toastr.min.css" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="~/js/toastr.min.js"></script>
+
+@if (ViewBag.Saved != null)
+{
+    <script>
+        toastr.success("Successfully saved!");
+    </script>
+}
 <style>
     .form-section {
         display: none;
@@ -74,31 +84,7 @@
             <select asp-for="Country" class="form-control form-select" id="country_contact" name="Country">
                 <option value="" selected disabled></option>
 
-                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-                <script>
-                    $.ajax({
-                        url: '/Students/GetCountries',
-                        dataType: 'json',
-                        success: function (response) {
-                            var data = typeof response === 'string' ? JSON.parse(response) : response;
-                            console.log(data);
-                            $('#country_contact').empty();
-
-                            var sortedKeys = Object.keys(data).sort(function (a, b) {
-                                return data[a].localeCompare(data[b]);
-                            });
-
-                            for (var i = 0; i < sortedKeys.length; i++) {
-                                var countryCode = sortedKeys[i];
-                                var countryName = data[countryCode];
-                                $('#country_contact').append('<option value="' + countryName + '">' + countryName + '</option>');
-                            }
-                        },
-                        error: function (xhr, status, error) {
-                            console.error("Error: " + error);
-                        }
-                    });
-                </script>
+                
             </select>
             <span asp-validation-for="Country" class="text-danger"></span>
         </div>
@@ -108,8 +94,9 @@
             <span asp-validation-for="MobilePhoneNumber" class="text-danger"></span>
         </div>
         <div class="form-group">
-            <label asp-for="OtherPhoneNumber">Other phone number</label>
-            <input asp-for="OtherPhoneNumber" type="text" class="form-control" id="OtherPhoneNumber" name="OtherPhoneNumber">
+            <label asp-for="OtherPhoneNumber2">Other phone number</label>
+            <input asp-for="OtherPhoneNumber2" type="text" class="form-control" id="OtherPhoneNumber2" name="OtherPhoneNumber2" required>
+            <span asp-validation-for="OtherPhoneNumber2" class="text-danger"></span>
         </div>
         <br />
         <br />
@@ -131,6 +118,7 @@
         <div class="form-group">
             <label asp-for="NextOfKinForeName" class="control-label">Forename *</label>
             <input asp-for="NextOfKinForeName" type="text" class="form-control" id="NextOfKinForeName" name="NextOfKinForeName">
+            <span asp-validation-for="NextOfKinForeName" class="text-danger"></span>
         </div>
         <div class="form-group">
             <label asp-for="NextOfKinSurName" class="control-label">Surname *</label>
@@ -156,31 +144,7 @@
             <select asp-for="NextOfKinCountry" class="form-control form-select" id="NextOfKinCountry" name="NextOfKinCountry">
                 <option value="" selected disabled></option>
 
-                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-                <script>
-                    $.ajax({
-                        url: '/Students/GetCountries',
-                        dataType: 'json',
-                        success: function (response) {
-                            var data = typeof response === 'string' ? JSON.parse(response) : response;
-                            console.log(data);
-                            $('#NextOfKinCountry').empty();
-
-                            var sortedKeys = Object.keys(data).sort(function (a, b) {
-                                return data[a].localeCompare(data[b]);
-                            });
-
-                            for (var i = 0; i < sortedKeys.length; i++) {
-                                var countryCode = sortedKeys[i];
-                                var countryName = data[countryCode];
-                                $('#NextOfKinCountry').append('<option value="' + countryName + '">' + countryName + '</option>');
-                            }
-                        },
-                        error: function (xhr, status, error) {
-                            console.error("Error: " + error);
-                        }
-                    });
-                </script>
+                
             </select>
             <span asp-validation-for="NextOfKinCountry" class="text-danger"></span>
         </div>
@@ -211,3 +175,54 @@
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $.ajax({
+        url: '/Students/GetCountries',
+        dataType: 'json',
+        success: function (response) {
+            var data = typeof response === 'string' ? JSON.parse(response) : response;
+            console.log(data);
+            $('#NextOfKinCountry').empty();
+
+            var sortedKeys = Object.keys(data).sort(function (a, b) {
+                return data[a].localeCompare(data[b]);
+            });
+
+            for (var i = 0; i < sortedKeys.length; i++) {
+                var countryCode = sortedKeys[i];
+                var countryName = data[countryCode];
+                $('#NextOfKinCountry').append('<option value="' + countryName + '">' + countryName + '</option>');
+            }
+        },
+        error: function (xhr, status, error) {
+            console.error("Error: " + error);
+        }
+    });
+</script>
+
+<script>
+    $.ajax({
+        url: '/Students/GetCountries',
+        dataType: 'json',
+        success: function (response) {
+            var data = typeof response === 'string' ? JSON.parse(response) : response;
+            console.log(data);
+            $('#country_contact').empty();
+
+            var sortedKeys = Object.keys(data).sort(function (a, b) {
+                return data[a].localeCompare(data[b]);
+            });
+
+            for (var i = 0; i < sortedKeys.length; i++) {
+                var countryCode = sortedKeys[i];
+                var countryName = data[countryCode];
+                $('#country_contact').append('<option value="' + countryName + '">' + countryName + '</option>');
+            }
+        },
+        error: function (xhr, status, error) {
+            console.error("Error: " + error);
+        }
+    });
+</script>

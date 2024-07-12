@@ -8,7 +8,7 @@ public class CreateContactDetailsVM
     public string Country { get; set; }
     [Required]
     public string MobilePhoneNumber { get; set; }
-    public string OtherPhoneNumber { get; set; }
+    public string OtherPhoneNumber2 { get; set; }
     [Required]
     public string NextOfKinTitle { get; set; }
     public string NextOfKinForeName { get; set; }

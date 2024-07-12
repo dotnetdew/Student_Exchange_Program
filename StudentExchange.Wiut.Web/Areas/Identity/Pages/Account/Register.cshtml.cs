@@ -166,25 +166,28 @@ public class RegisterModel : PageModel
                     values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
                     protocol: Request.Scheme);
 
-    //            await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-    //$"Please confirm your account by <a href='{callbackUrl}'>clicking here</a>.");
+                //            await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
+                //$"Please confirm your account by <a href='{callbackUrl}'>clicking here</a>.");
 
-                await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                    $@"<html>
+                await _emailSender.SendEmailAsync(
+                Input.Email,
+                "Confirm your email",
+                $@"<html>
                     <head>
-                    <title>Confirm your email</title>
+                        <title>Confirm your email</title>
                     </head>
                     <body>
-                    <p>Dear {Input.ForeName},</p>
-                    <p>Thank you for your interest in applying for our Exchange Programme at the University of Westminster.</p>
-                    <p>We look forward to receiving your application.</p>
-                    <p>Click <a href='{callbackUrl}'>here</a> to re-access the application form at any time.</p>
-                    <p>If you have any queries concerning your application, please email us at <a href='mailto:educationabroad@westminster.ac.uk'>educationabroad@westminster.ac.uk</a></p>
-                    <p>With best wishes,</p>
-                    <p>The Education Abroad Team</p>
-                    <p>Application Ref: </p>
+                        <p>Dear {Input.ForeName},</p>
+                        <p>Thank you for your interest in applying for our Exchange Programme at the University of Westminster.</p>
+                        <p>We look forward to receiving your application.</p>
+                        <p>Click <a href='{callbackUrl}'>here</a> to re-access the application form at any time.</p>
+                        <p>If you have any queries concerning your application, please email us at <a href='mailto:educationabroad@westminster.ac.uk'>educationabroad@westminster.ac.uk</a></p>
+                        <p>With best wishes,</p>
+                        <p>The Education Abroad Team</p>
+                        <p>Application Ref: </p>
                     </body>
-                    </html>");
+                </html>");
+
 
                 if (_userManager.Options.SignIn.RequireConfirmedAccount)
                 {

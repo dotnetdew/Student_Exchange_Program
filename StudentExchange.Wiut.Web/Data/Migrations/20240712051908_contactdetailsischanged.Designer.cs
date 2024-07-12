@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StudentExchange.Wiut.Web.Data;
 
@@ -11,9 +12,11 @@ using StudentExchange.Wiut.Web.Data;
 namespace StudentExchange.Wiut.Web.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240712051908_contactdetailsischanged")]
+    partial class contactdetailsischanged
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -478,31 +481,6 @@ namespace StudentExchange.Wiut.Web.Data.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("StudentExchange.Wiut.Web.Models.Submission", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<bool>("AgreeToStatements")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("StudentId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("SubmissionCreated")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("StudentId");
-
-                    b.ToTable("Submission");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -609,17 +587,6 @@ namespace StudentExchange.Wiut.Web.Data.Migrations
                     b.Navigation("Student");
                 });
 
-            modelBuilder.Entity("StudentExchange.Wiut.Web.Models.Submission", b =>
-                {
-                    b.HasOne("StudentExchange.Wiut.Web.Models.Student", "Student")
-                        .WithMany("Submissions")
-                        .HasForeignKey("StudentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Student");
-                });
-
             modelBuilder.Entity("StudentExchange.Wiut.Web.Models.Student", b =>
                 {
                     b.Navigation("ContactDetails");
@@ -629,8 +596,6 @@ namespace StudentExchange.Wiut.Web.Data.Migrations
                     b.Navigation("Housings");
 
                     b.Navigation("PersonalDetails");
-
-                    b.Navigation("Submissions");
 
                     b.Navigation("disabilityLearningSupports");
                 });

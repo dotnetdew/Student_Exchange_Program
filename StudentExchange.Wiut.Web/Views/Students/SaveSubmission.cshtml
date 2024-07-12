@@ -1,5 +1,15 @@
-﻿@model StudentExchange.Wiut.Web.ViewModels.CreateHousingVM
+﻿@model StudentExchange.Wiut.Web.ViewModels.CreateSubmissionVM
 
+<link href="~/css/toastr.min.css" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="~/js/toastr.min.js"></script>
+
+@if (ViewBag.Saved != null)
+{
+    <script>
+        toastr.success("Successfully saved! You will receive email about submission!");
+    </script>
+}
 <style>
     .form-section {
         display: none;
@@ -11,41 +21,41 @@
         margin-bottom: 20px;
     }
 
-        .form-section h3 {
-            margin-top: 0;
-            font-weight: bold;
-            color: #0b459f;
-        }
+    .form-section h3 {
+        margin-top: 0;
+        font-weight: bold;
+        color: #0b459f;
+    }
 
-        .form-section.active {
-            display: block;
-        }
+    .form-section.active {
+        display: block;
+    }
 
-        .form-section .form-group {
-            margin-bottom: 20px;
-        }
+    .form-section .form-group {
+        margin-bottom: 20px;
+    }
 
-        .form-section .form-control {
-            height: 40px;
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-        }
+    .form-section .form-control {
+        height: 40px;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+    }
 
-        .form-section .btn {
-            padding: 10px 20px;
-            font-size: 16px;
-            font-weight: bold;
-            border: none;
-            border-radius: 5px;
-            background-color: #0b459f;
-            color: #fff;
-            cursor: pointer;
-        }
+    .form-section .btn {
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        border: none;
+        border-radius: 5px;
+        background-color: #0b459f;
+        color: #fff;
+        cursor: pointer;
+    }
 
-            .form-section .btn:hover {
-                background-color: #23527c;
-            }
+    .form-section .btn:hover {
+        background-color: #23527c;
+    }
 
     #personal-details {
         border-color: #0b459f;
@@ -81,35 +91,35 @@
         color: #0b459f;
     }
     .card {
-    background-color: #0b459f; /* darker blue background color, related to the button color */
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
+        background-color: #0b459f; /* darker blue background color, related to the button color */
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
 
-.card-body {
-    color: #fff; /* white text color to contrast with the darker blue background */
-  }
+    .card-body {
+        color: #fff; /* white text color to contrast with the darker blue background */
+      }
 
-.btn-primary {
-    background-color: #1f5f8a; /* even darker blue button color */
-    border-color: #1f5f8a;
-    color: #fff; /* white text color */
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
+    .btn-primary {
+        background-color: #1f5f8a; /* even darker blue button color */
+        border-color: #1f5f8a;
+        color: #fff; /* white text color */
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
 
-.center-btn {
-    text-align: center;
-    margin-top: 20px;
-  }
+    .center-btn {
+        text-align: center;
+        margin-top: 20px;
+      }
 </style>
 
-<form asp-action="" method="post">
+<form asp-action="SaveSubmission" method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <input type="hidden" asp-for="StudentId" class="form-control" />
-
+    <input type="hidden" asp-for="EmailAddress" class="form-control" />
     <div id="personal-details" class="form-section active">
         <h3>Your Uploaded Evidence</h3>
         <hr />
@@ -139,14 +149,14 @@
             <li>For more about how we use your information, see our Student Data Privacy Statement and our webpage on How we use your data.</li>
         </ul>
         <br />
-        <p><input type="checkbox" id="agree" name="agree"> <b>I have read, understood and agree to the above statements</b></p>
+        <p><input type="checkbox" asp-for="AgreeToStatements" id="agree"> <b>I have read, understood and agree to the above statements</b></p>
         
         <div class="card">
           <div class="card-body">
             <h5>Submitting this application</h5>
             <ul>
               <li>You will not be able to change your application once you have submitted it</li>
-              <li>An auto-acknowledgement email confirming the submission of your application will be sent to <i>abdulloprogram@gmail.com</i></li>
+                    <li>An auto-acknowledgement email confirming the submission of your application will be sent to <i>@Model.EmailAddress</i></li>
               <li>You will be able to see and print your completed application after submission</li>
               <li>If you wish to review all pages of your application in one screen prior to submission, please click the Preview button in the Application Checklist menu</li>
               <li>You must complete all mandatory fields across the application form before you can submit</li>

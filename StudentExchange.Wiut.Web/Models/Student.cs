@@ -20,5 +20,6 @@ namespace StudentExchange.Wiut.Web.Models
         public ICollection<EducationalDetails> EducationalDetails { get; set; }
         public ICollection<DisabilityLearningSupport> disabilityLearningSupports { get; set; }
         public ICollection<Housing> Housings { get; set; }
+        public ICollection<Submission> Submissions { get; set; }
     }
 }

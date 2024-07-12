@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using StudentExchange.Wiut.Web.Models;
 using StudentExchange.Wiut.Web.Repositories;
@@ -18,6 +19,8 @@ public class StudentsController : Controller
     private readonly IRepository<DisabilityLearningSupport> _disabilityLearningSupportRepository;
     private readonly IRepository<Housing> _housingRepository;
     private readonly IRepository<Student> _studentdRepository;
+    private readonly IRepository<Submission> _submissionRepository;
+    private readonly IEmailSender _emailSender;
     public StudentsController(
         UserManager<Student> userManager, 
         IRepository<PersonalDetails> personalDetailsRepository,
@@ -25,7 +28,9 @@ public class StudentsController : Controller
         IRepository<Student> studentdRepository,
         IRepository<EducationalDetails> educationalDetailsRepository,
         IRepository<DisabilityLearningSupport> disabilityLearningSupportRepository,
-        IRepository<Housing> housingRepository)
+        IRepository<Housing> housingRepository,
+        IRepository<Submission> submissionRepository,
+        IEmailSender emailSender)
     {
         _userManager = userManager;
         _personalDetailsRepository = personalDetailsRepository;
@@ -34,6 +39,8 @@ public class StudentsController : Controller
         _educationalDetailsRepository = educationalDetailsRepository;
         _disabilityLearningSupportRepository = disabilityLearningSupportRepository;
         _housingRepository = housingRepository;
+        _submissionRepository = submissionRepository;
+        _emailSender = emailSender;
     }
 
     public IActionResult MyApplications()
@@ -98,12 +105,14 @@ public class StudentsController : Controller
                     PassportFile = stream.ToArray(),
                     PassportFileName = vm.PassportFile.FileName,
                     PassportFileType = vm.PassportFile.ContentType,
-                    StudentId = vm.StudentId
+                    StudentId = vm.StudentId,
                 };
                 _personalDetailsRepository.Add(personalDetails);
                 _personalDetailsRepository.Save();
 
-                return RedirectToAction("SaveContactDetails", new { studentId = vm.StudentId });
+                ViewBag.Saved = "true";
+
+                return View(vm);
             }
         }
         else
@@ -128,7 +137,7 @@ public class StudentsController : Controller
             {
                 Country = vm.Country,
                 MobilePhoneNumber = vm.MobilePhoneNumber,
-                OtherPhoneNumber = vm.OtherPhoneNumber,
+                OtherPhoneNumber = vm.OtherPhoneNumber2,
                 NextOfKinTitle = vm.NextOfKinTitle,
                 NextOfKinForeName = vm.NextOfKinForeName,
                 NextOfKinSurName = vm.NextOfKinSurName,
@@ -141,6 +150,8 @@ public class StudentsController : Controller
             };
             _contactDetailsRepository.Add(contactDetails);
             _contactDetailsRepository.Save();
+
+            ViewBag.Saved = "true";
 
             return View(vm);
         }
@@ -175,6 +186,8 @@ public class StudentsController : Controller
             _educationalDetailsRepository.Add(educationalDetails);
             _educationalDetailsRepository.Save();
 
+            ViewBag.Saved = "true";
+
             return View(vm);
         }
         else
@@ -202,6 +215,8 @@ public class StudentsController : Controller
 
             _disabilityLearningSupportRepository.Add(disabilityDetails);
             _disabilityLearningSupportRepository.Save();
+
+            ViewBag.Saved = "true";
 
             return View(vm);
         }
@@ -231,6 +246,8 @@ public class StudentsController : Controller
             _housingRepository.Add(housing);
             _housingRepository.Save();
 
+            ViewBag.Saved = "true";
+
             return View(vm);
         }
         else
@@ -241,7 +258,36 @@ public class StudentsController : Controller
     public IActionResult SaveSubmission(string studentId)
     {
         var student = _studentdRepository.GetById(studentId);
-        //var housingVM = new CreateHousingVM() { StudentId = studentId };
-        return View();
+        var submissionVM = new CreateSubmissionVM()
+        {
+            StudentId = studentId,
+            EmailAddress = student.Email
+        };
+        return View(submissionVM);
+    }
+
+    [HttpPost]
+    public IActionResult SaveSubmission(CreateSubmissionVM vm)
+    {
+        if (ModelState.IsValid)
+        {
+            var submission = new Submission()
+            {
+                StudentId = vm.StudentId,
+                SubmissionCreated = DateTime.Now,
+                AgreeToStatements = vm.AgreeToStatements
+            };
+
+            _submissionRepository.Add(submission);
+            _submissionRepository.Save();
+
+            _emailSender.SendEmailAsync(vm.EmailAddress, "Submission", "Congratulations Your application has been accepted.");
+
+            ViewBag.Saved = "true";
+
+            return View(vm);
+        }
+        else
+            return View();
     }
 }
