@@ -4,7 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace StudentExchange.Wiut.Web.Areas.Admin.Controllers;
 
 [Authorize(Policy = "AdminPolicy")]
-public class AdminController : Controller
+[Area("Admin")]
+public class ManageController : Controller
 {
     public IActionResult Index()
     {

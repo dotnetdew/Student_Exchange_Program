@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using StudentExchange.Wiut.Web.Data;
 using StudentExchange.Wiut.Web.Models;
 using StudentExchange.Wiut.Web.Repositories;
@@ -27,6 +28,7 @@ builder.Services.AddDefaultIdentity<Student>(options =>
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders();
+
 builder.Services.AddControllersWithViews();
 
 //adding admin role 
@@ -41,7 +43,7 @@ using (var scope = builder.Services.BuildServiceProvider().CreateScope())
 
 builder.Services.AddAuthorization(options =>
 {
-    options.AddPolicy("AdminPolicy", policy => policy.RequireRole("Admin"));
+    options.AddPolicy("AdminPolicy", policy => policy.RequireRole("AdminRole"));
 });
 
 
@@ -73,10 +75,11 @@ app.UseEndpoints(endpoints =>
     endpoints.MapControllerRoute(
         name: "default",
         pattern: "{controller=Home}/{action=Index}/{id?}");
-    endpoints.MapControllerRoute(
-        name: "admin",
-        pattern: "Admin/{action=Index}/{id?}",
-        defaults: new { controller = "Admin" });
+
+    endpoints.MapAreaControllerRoute(
+        name: "Admin",
+        areaName: "Admin",
+        pattern: "Admin/{controller=Manage}/{action=Index}/{id?}");
 });
 
 app.MapRazorPages();
