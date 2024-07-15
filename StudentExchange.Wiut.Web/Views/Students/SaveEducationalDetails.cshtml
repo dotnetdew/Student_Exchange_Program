@@ -1,7 +1,9 @@
 ﻿@model StudentExchange.Wiut.Web.ViewModels.CreateEducationalDetailsVM
 
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
 <link href="~/css/toastr.min.css" rel="stylesheet" />
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="~/js/toastr.min.js"></script>
 
 @if (ViewBag.Saved != null)
@@ -72,12 +74,11 @@
 
 <form asp-action="SaveEducationalDetails" method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <input type="hidden" asp-for="StudentId" class="form-control"/>
+    <input type="hidden" asp-for="StudentId" class="form-control" />
 
-    <div id="contact-details" class="form-section active">
+    <div id="educational-details" class="form-section active">
         <h3>Current Educational Details</h3>
         <br />
-        <!-- Add contact details fields here -->
         <div class="form-group">
             <label asp-for="ExchangePartnerInstitution" class="control-label">Exchange Partner Institution *</label>
             <input asp-for="ExchangePartnerInstitution" type="text" class="form-control" id="ExchangePartnerInstitution" name="ExchangePartnerInstitution" required>
@@ -89,45 +90,45 @@
             <span asp-validation-for="ExactNameOfDegreeProgramme" class="text-danger"></span>
         </div>
         <div class="form-group">
-                <label asp-for="TotalLengthOfDegreeProgrammeInYears">Total length of degree programme in years *</label>
-                <select asp-for="TotalLengthOfDegreeProgrammeInYears" class="form-control form-select" id="TotalLengthOfDegreeProgrammeInYears" name="TotalLengthOfDegreeProgrammeInYears">
-                    <option selected disabled></option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10+</option>
-                </select>
-                <span asp-validation-for="TotalLengthOfDegreeProgrammeInYears" class="text-danger"></span>
-         </div>
-        <div class="d-flex">
-            <div class="form-group">
-            <label asp-for="ExpectedMonthOfGraduation">Expexted month of graduation *</label>
-            <select asp-for="ExpectedMonthOfGraduation" class="form-control form-select" id="ExpectedMonthOfGraduation" name="ExpectedMonthOfGraduation">
+            <label asp-for="TotalLengthOfDegreeProgrammeInYears">Total length of degree programme in years *</label>
+            <select asp-for="TotalLengthOfDegreeProgrammeInYears" class="form-control form-select" id="TotalLengthOfDegreeProgrammeInYears" name="TotalLengthOfDegreeProgrammeInYears">
                 <option selected disabled></option>
-                <option>Jan</option>
-                <option>Feb</option>
-                <option>Mar</option>
-                <option>Apr</option>
-                <option>May</option>
-                <option>Jun</option>
-                <option>Jul</option>
-                <option>Aug</option>
-                <option>Sep</option>
-                <option>Oct</option>
-                <option>Nov</option>
-                <option>Dec</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10+</option>
             </select>
             <span asp-validation-for="TotalLengthOfDegreeProgrammeInYears" class="text-danger"></span>
-           </div>
-        <div class="form-group"  style="margin-left: 50px;>
-                <label asp-for="ExpectedYearOfGraduation">year *</label>
-                <select asp-for="ExpectedYearOfGraduation" class="form-control form-select" id="ExpectedYearOfGraduation" name="ExpectedYearOfGraduation" style="width: 100px;">
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label asp-for="ExpectedMonthOfGraduation">Expected month of graduation *</label>
+                <select asp-for="ExpectedMonthOfGraduation" class="form-control form-select" id="ExpectedMonthOfGraduation" name="ExpectedMonthOfGraduation">
+                    <option selected disabled></option>
+                    <option>Jan</option>
+                    <option>Feb</option>
+                    <option>Mar</option>
+                    <option>Apr</option>
+                    <option>May</option>
+                    <option>Jun</option>
+                    <option>Jul</option>
+                    <option>Aug</option>
+                    <option>Sep</option>
+                    <option>Oct</option>
+                    <option>Nov</option>
+                    <option>Dec</option>
+                </select>
+                <span asp-validation-for="ExpectedMonthOfGraduation" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <label asp-for="ExpectedYearOfGraduation">Year *</label>
+                <select asp-for="ExpectedYearOfGraduation" class="form-control form-select" id="ExpectedYearOfGraduation" name="ExpectedYearOfGraduation">
                     <option selected disabled></option>
                     <option>2024</option>
                     <option>2025</option>
@@ -145,19 +146,19 @@
             </div>
         </div>
         <div class="form-group">
-                <label asp-for="IsEnglishFirstLanguage">Is English you first Language? *</label>
-                <select asp-for="IsEnglishFirstLanguage" class="form-control form-select" id="IsEnglishFirstLanguage" name="IsEnglishFirstLanguage">
-                    <option selected disabled></option>
-                    <option>Yes</option>
-                    <option>No</option>
-                </select>
-                <span asp-validation-for="IsEnglishFirstLanguage" class="text-danger"></span>
-            </div>
-            <br />
-            <br />
+            <label asp-for="IsEnglishFirstLanguage">Is English your first language? *</label>
+            <select asp-for="IsEnglishFirstLanguage" class="form-control form-select" id="IsEnglishFirstLanguage" name="IsEnglishFirstLanguage">
+                <option selected disabled></option>
+                <option>Yes</option>
+                <option>No</option>
+            </select>
+            <span asp-validation-for="IsEnglishFirstLanguage" class="text-danger"></span>
+        </div>
+        <br />
+        <br />
         <div class="d-flex justify-content-end">
-            <p style="margin-right: 800px;">*Denotes a mandatory field</p>
-            <a asp-action="SaveContactDetails" asp-route-studentId="@Model.StudentId" class="btn btn-primary" style="margin-right: 10px;">Back</a>
+            <p class="mr-auto">*Denotes a mandatory field</p>
+            <a asp-action="SaveContactDetails" asp-route-studentId="@Model.StudentId" class="btn btn-primary mr-2">Back</a>
             <button type="submit" class="btn btn-primary">Next</button>
         </div>
     </div>

@@ -1,7 +1,9 @@
 ﻿@model StudentExchange.Wiut.Web.ViewModels.CreateDisabilityLearningSupportVM
 
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
 <link href="~/css/toastr.min.css" rel="stylesheet" />
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="~/js/toastr.min.js"></script>
 
 @if (ViewBag.Saved != null)
@@ -21,41 +23,41 @@
         margin-bottom: 20px;
     }
 
-    .form-section h3 {
-        margin-top: 0;
-        font-weight: bold;
-        color: #0b459f;
-    }
+        .form-section h3 {
+            margin-top: 0;
+            font-weight: bold;
+            color: #0b459f;
+        }
 
-    .form-section.active {
-        display: block;
-    }
+        .form-section.active {
+            display: block;
+        }
 
-    .form-section .form-group {
-        margin-bottom: 20px;
-    }
+        .form-section .form-group {
+            margin-bottom: 20px;
+        }
 
-    .form-section .form-control {
-        height: 40px;
-        padding: 10px;
-        font-size: 16px;
-        border: 1px solid #ccc;
-    }
+        .form-section .form-control {
+            height: 40px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+        }
 
-    .form-section .btn {
-        padding: 10px 20px;
-        font-size: 16px;
-        font-weight: bold;
-        border: none;
-        border-radius: 5px;
-        background-color: #0b459f;
-        color: #fff;
-        cursor: pointer;
-    }
+        .form-section .btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            background-color: #0b459f;
+            color: #fff;
+            cursor: pointer;
+        }
 
-    .form-section .btn:hover {
-        background-color: #23527c;
-    }
+            .form-section .btn:hover {
+                background-color: #23527c;
+            }
 
     #personal-details {
         border-color: #0b459f;
@@ -72,7 +74,7 @@
 
 <form asp-action="SaveDisabilityLearningSupport" method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <input type="hidden" asp-for="StudentId" class="form-control"/>
+    <input type="hidden" asp-for="StudentId" class="form-control" />
 
     <div id="personal-details" class="form-section active">
         <h3>Disability Learning Support</h3>
@@ -87,7 +89,7 @@
 
         <p>Our Disability Learning Support (DLS) Team may be able to offer confidential support to help you make the most of your studies.</p>
         <p>If you have a disability we strongly encourage you to declare it as soon as possible so that any available support can be put in place.</p>
-        <!-- Add personal details fields here -->
+
         <div class="form-group">
             <label asp-for="HaveADisablity" class="control-label">Do you have a disability or condition that affects your studies? *</label>
             <select asp-for="HaveADisablity" class="form-control form-select" id="HaveADisablity" name="HaveADisablity">
@@ -101,8 +103,8 @@
 
         <br /><br />
         <div class="d-flex justify-content-end">
-            <p style="margin-right: 800px;">*Denotes a mandatory field</p>
-            <a asp-action="SaveEducationalDetails" asp-route-studentId="@Model.StudentId" class="btn btn-primary" style="margin-right: 10px;">Back</a>
+            <p class="mr-auto">*Denotes a mandatory field</p>
+            <a asp-action="SaveEducationalDetails" asp-route-studentId="@Model.StudentId" class="btn btn-primary mr-2">Back</a>
             <button type="submit" class="btn btn-primary">Next</button>
         </div>
     </div>

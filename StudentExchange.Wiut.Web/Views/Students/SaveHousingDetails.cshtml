@@ -12,84 +12,82 @@
 }
 <style>
     .form-section {
-        display: none;
         background-color: #fff;
-        border: 1px solid #ddd;
+        border: 1px solid #0b459f; /* Blue border */
         border-radius: 0px;
         padding: 20px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         margin-bottom: 20px;
     }
 
-    .form-section h3 {
-        margin-top: 0;
-        font-weight: bold;
-        color: #0b459f;
-    }
+        .form-section h3 {
+            margin-top: 0;
+            font-weight: bold;
+            color: #0b459f;
+        }
 
-    .form-section.active {
-        display: block;
-    }
+        .form-section.active {
+            display: block;
+        }
 
-    .form-section .form-group {
-        margin-bottom: 20px;
-    }
+        .form-section .form-group {
+            margin-bottom: 20px;
+        }
 
-    .form-section .form-control {
-        height: 40px;
-        padding: 10px;
-        font-size: 16px;
-        border: 1px solid #ccc;
-    }
+        .form-section .form-control {
+            height: 40px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+        }
 
-    .form-section .btn {
-        padding: 10px 20px;
-        font-size: 16px;
-        font-weight: bold;
-        border: none;
-        border-radius: 5px;
-        background-color: #0b459f;
-        color: #fff;
-        cursor: pointer;
-    }
+        .form-section .btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            background-color: #0b459f;
+            color: #fff;
+            cursor: pointer;
+        }
 
-    .form-section .btn:hover {
-        background-color: #23527c;
-    }
+            .form-section .btn:hover {
+                background-color: #23527c;
+            }
 
-    #personal-details {
-        border-color: #0b459f;
-    }
-
-    #contact-details {
-        border-color: #0b459f;
-    }
-
-    #educational-details {
-        border-color: #d9534f;
-    }
     .housing-location {
-        margin-left: 20px;
-        display: inline-block;
-        vertical-align: top;
-        margin-right: 20px;
+        margin-bottom: 20px;
+        padding: 10px;
+        text-align: center;
     }
 
-    .housing-location img {
-        border: 1px solid #ddd;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
+        .housing-location img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border: 1px solid #0b459f; /* Blue border */
+        }
 
-    .housing-location .location-details {
+    .location-details {
         font-size: 14px;
         margin-top: 10px;
     }
 
-    .housing-location .location-details b {
-        font-weight: bold;
-        color: #0b459f;
+        .location-details b {
+            font-weight: bold;
+            color: #0b459f;
+        }
+
+    .info-section {
+        margin-top: 20px;
     }
+
+        .info-section h4 {
+            font-weight: bold;
+            color: #0b459f;
+        }
 </style>
 
 <form asp-action="SaveHousingDetails" method="post">
@@ -110,28 +108,30 @@
             <span asp-validation-for="WishToApplyForHousingInUniversity" class="text-danger"></span>
         </div>
 
-        <br />
-
-                <div class="d-flex" style="margin: 20px;">
-            <div class="housing-location">
-                <a href="@Url.Action("Location1", "Housing", new { studentId = Model.StudentId })">
-                    <img src="~/images/dormitory1.jpg" alt="Dormitory 1" style="width: 200px; height: 150px;" />
-                </a>
-                <div class="location-details">
-                    <b>Location 1:</b> 1A Yangi zamon Street<br />
-                    <b>For:</b> Undergraduate and postgraduate students<br />
-                    <b>Phone number:</b> +998712387481
+        <div class="row">
+            <div class="col-md-6">
+                <div class="housing-location">
+                    <a href="@Url.Action("Location1", "Housing", new { studentId = Model.StudentId })">
+                        <img src="~/images/dormitory1.jpg" alt="Dormitory 1" />
+                    </a>
+                    <div class="location-details">
+                        <b>Location 1:</b> 1A Yangi zamon Street<br />
+                        <b>For:</b> Undergraduate and postgraduate students<br />
+                        <b>Phone number:</b> +998712387481
+                    </div>
                 </div>
             </div>
 
-            <div class="housing-location">
-                <a href="@Url.Action("Location2", "Housing", new { studentId = Model.StudentId })">
-                    <img src="~/images/dormitory2.jpg" alt="Dormitory 2" style="width: 200px; height: 150px;" />
-                </a>
-                <div class="location-details">
-                    <b>Location 2:</b> 9 Turk Kurgan Street<br />
-                    <b>For:</b> Undergraduate and postgraduate students<br />
-                    <b>Phone number:</b> +998712387482
+            <div class="col-md-6">
+                <div class="housing-location">
+                    <a href="@Url.Action("Location2", "Housing", new { studentId = Model.StudentId })">
+                        <img src="~/images/dormitory2.jpg" alt="Dormitory 2" />
+                    </a>
+                    <div class="location-details">
+                        <b>Location 2:</b> 9 Turk Kurgan Street<br />
+                        <b>For:</b> Undergraduate and postgraduate students<br />
+                        <b>Phone number:</b> +998712387482
+                    </div>
                 </div>
             </div>
         </div>
@@ -148,7 +148,7 @@
         <br /><br />
 
         <div class="d-flex justify-content-end">
-            <p style="margin-right: 800px;">*Denotes a mandatory field</p>
+            <p style="margin-right: auto;">*Denotes a mandatory field</p>
             <a asp-action="SaveDisabilityLearningSupport" asp-route-studentId="@Model.StudentId" class="btn btn-primary" style="margin-right: 10px;">Back</a>
             <button type="submit" class="btn btn-primary">Next</button>
         </div>
@@ -156,5 +156,5 @@
 </form>
 
 @section Scripts {
-        <partial name="_ValidationScriptsPartial" />
+    <partial name="_ValidationScriptsPartial" />
 }

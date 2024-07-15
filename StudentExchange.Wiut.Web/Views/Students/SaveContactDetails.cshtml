@@ -1,7 +1,9 @@
 ﻿@model StudentExchange.Wiut.Web.ViewModels.CreateContactDetailsVM
 
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
 <link href="~/css/toastr.min.css" rel="stylesheet" />
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="~/js/toastr.min.js"></script>
 
 @if (ViewBag.Saved != null)
@@ -72,101 +74,108 @@
 
 <form asp-action="SaveContactDetails" method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <input type="hidden" asp-for="StudentId" class="form-control"/>
+    <input type="hidden" asp-for="StudentId" class="form-control" />
 
     <div id="contact-details" class="form-section active">
         <h3>Contact details</h3>
         <hr />
         <h3>Permanent Home Address</h3>
         <!-- Add contact details fields here -->
-        <div class="form-group">
-            <label asp-for="Country">Country *</label>
-            <select asp-for="Country" class="form-control form-select" id="country_contact" name="Country">
-                <option value="" selected disabled></option>
-
-                
-            </select>
-            <span asp-validation-for="Country" class="text-danger"></span>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label asp-for="Country">Country *</label>
+                <select asp-for="Country" class="form-control form-select" id="country_contact" name="Country">
+                    <option value="" selected disabled></option>
+                </select>
+                <span asp-validation-for="Country" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <label asp-for="MobilePhoneNumber" class="control-label">Mobile / Cell phone number *</label>
+                <input asp-for="MobilePhoneNumber" type="text" class="form-control" id="MobilePhoneNumber" name="MobilePhoneNumber" required>
+                <span asp-validation-for="MobilePhoneNumber" class="text-danger"></span>
+            </div>
         </div>
-        <div class="form-group">
-            <label asp-for="MobilePhoneNumber" class="control-label">Mobile / Cell phone number *</label>
-            <input asp-for="MobilePhoneNumber" type="text" class="form-control" id="MobilePhoneNumber" name="MobilePhoneNumber" required>
-            <span asp-validation-for="MobilePhoneNumber" class="text-danger"></span>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label asp-for="OtherPhoneNumber2">Other phone number</label>
+                <input asp-for="OtherPhoneNumber2" type="text" class="form-control" id="OtherPhoneNumber2" name="OtherPhoneNumber2">
+                <span asp-validation-for="OtherPhoneNumber2" class="text-danger"></span>
+            </div>
         </div>
-        <div class="form-group">
-            <label asp-for="OtherPhoneNumber2">Other phone number</label>
-            <input asp-for="OtherPhoneNumber2" type="text" class="form-control" id="OtherPhoneNumber2" name="OtherPhoneNumber2" required>
-            <span asp-validation-for="OtherPhoneNumber2" class="text-danger"></span>
-        </div>
-        <br />
         <br />
         <h3>Next of Kin Details</h3>
-        <div class="form-group">
-            <label asp-for="NextOfKinTitle">Title *</label>
-            <select asp-for="NextOfKinTitle" class="form-control form-select" id="NextOfKinTitle" name="NextOfKinTitle">
-                <option selected disabled></option>
-                <option>Mr</option>
-                <option>Miss</option>
-                <option>Mrs</option>
-                <option>Ms</option>
-                <option>Dr</option>
-                <option>Prof</option>
-                <option>Gender Neutral</option>
-            </select>
-            <span asp-validation-for="NextOfKinTitle" class="text-danger"></span>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label asp-for="NextOfKinTitle">Title *</label>
+                <select asp-for="NextOfKinTitle" class="form-control form-select" id="NextOfKinTitle" name="NextOfKinTitle">
+                    <option selected disabled></option>
+                    <option>Mr</option>
+                    <option>Miss</option>
+                    <option>Mrs</option>
+                    <option>Ms</option>
+                    <option>Dr</option>
+                    <option>Prof</option>
+                    <option>Gender Neutral</option>
+                </select>
+                <span asp-validation-for="NextOfKinTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <label asp-for="NextOfKinForeName" class="control-label">Forename *</label>
+                <input asp-for="NextOfKinForeName" type="text" class="form-control" id="NextOfKinForeName" name="NextOfKinForeName">
+                <span asp-validation-for="NextOfKinForeName" class="text-danger"></span>
+            </div>
         </div>
-        <div class="form-group">
-            <label asp-for="NextOfKinForeName" class="control-label">Forename *</label>
-            <input asp-for="NextOfKinForeName" type="text" class="form-control" id="NextOfKinForeName" name="NextOfKinForeName">
-            <span asp-validation-for="NextOfKinForeName" class="text-danger"></span>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label asp-for="NextOfKinSurName" class="control-label">Surname *</label>
+                <input asp-for="NextOfKinSurName" type="text" class="form-control" id="NextOfKinSurName" name="NextOfKinSurName" required>
+                <span asp-validation-for="NextOfKinSurName" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <label asp-for="Relationship">Relationship *</label>
+                <select asp-for="Relationship" class="form-control form-select" id="Relationship" name="Relationship">
+                    <option selected disabled></option>
+                    <option>Child e.g. daughter/son</option>
+                    <option>Friend</option>
+                    <option>Grandparent</option>
+                    <option>Other</option>
+                    <option>Parent</option>
+                    <option>Partner e.g. husband/wife</option>
+                    <option>Sibling e.g. sister/brother</option>
+                </select>
+                <span asp-validation-for="Relationship" class="text-danger"></span>
+            </div>
         </div>
-        <div class="form-group">
-            <label asp-for="NextOfKinSurName" class="control-label">Surname *</label>
-            <input asp-for="NextOfKinSurName" type="text" class="form-control" id="NextOfKinSurName" name="NextOfKinSurName" required>
-            <span asp-validation-for="NextOfKinSurName" class="text-danger"></span>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label asp-for="NextOfKinCountry">Country *</label>
+                <select asp-for="NextOfKinCountry" class="form-control form-select" id="NextOfKinCountry" name="NextOfKinCountry">
+                    <option value="" selected disabled></option>
+                </select>
+                <span asp-validation-for="NextOfKinCountry" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <label asp-for="NextOfKinMobilePhone" class="control-label">Mobile / Cell phone number *</label>
+                <input asp-for="NextOfKinMobilePhone" type="text" class="form-control" id="NextOfKinMobilePhone" name="NextOfKinMobilePhone" required>
+                <span asp-validation-for="NextOfKinMobilePhone" class="text-danger"></span>
+            </div>
         </div>
-        <div class="form-group">
-            <label asp-for="Relationship">Relationship *</label>
-            <select asp-for="Relationship" class="form-control form-select" id="Relationship" name="Relationship">
-                <option selected disabled></option>
-                <option>Child e.g. daughter/son</option>
-                <option>Friend</option>
-                <option>Grandparent</option>
-                <option>Other</option>
-                <option>Parent</option>
-                <option>Partner e.g. husband/wife</option>
-                <option>Sibling e.g. sister/brother</option>
-            </select>
-            <span asp-validation-for="Relationship" class="text-danger"></span>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label asp-for="NextOfKinOtherPhone" class="control-label">Other phone number</label>
+                <input asp-for="NextOfKinOtherPhone" type="text" class="form-control" id="NextOfKinOtherPhone" name="NextOfKinOtherPhone">
+                <span asp-validation-for="NextOfKinOtherPhone" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <label asp-for="EmailAddress" class="control-label">Email address</label>
+                <input asp-for="EmailAddress" type="text" class="form-control" id="EmailAddress" name="EmailAddress" required>
+                <span asp-validation-for="EmailAddress" class="text-danger"></span>
+            </div>
         </div>
-        <div class="form-group">
-            <label asp-for="NextOfKinCountry">Country *</label>
-            <select asp-for="NextOfKinCountry" class="form-control form-select" id="NextOfKinCountry" name="NextOfKinCountry">
-                <option value="" selected disabled></option>
-
-                
-            </select>
-            <span asp-validation-for="NextOfKinCountry" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="NextOfKinMobilePhone" class="control-label">Mobile / Cell phone number *</label>
-            <input asp-for="NextOfKinMobilePhone" type="text" class="form-control" id="NextOfKinMobilePhone" name="NextOfKinMobilePhone" required>
-            <span asp-validation-for="NextOfKinMobilePhone" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="NextOfKinOtherPhone" class="control-label">Other phone number</label>
-            <input asp-for="NextOfKinOtherPhone" type="text" class="form-control" id="NextOfKinOtherPhone" name="NextOfKinOtherPhone" required>
-            <span asp-validation-for="NextOfKinOtherPhone" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="EmailAddress" class="control-label">Email address</label>
-            <input asp-for="EmailAddress" type="text" class="form-control" id="EmailAddress" name="EmailAddress" required>
-            <span asp-validation-for="EmailAddress" class="text-danger"></span>
-        </div>
-        <br /><br />
+        <br />
         <div class="d-flex justify-content-end">
-            <p style="margin-right: 800px;">*Denotes a mandatory field</p>
-            <a asp-action="SavePersonalDetails" asp-route-studentId="@Model.StudentId" class="btn btn-primary" style="margin-right: 10px;">Back</a>
+            <p class="mr-auto">*Denotes a mandatory field</p>
+            <a asp-action="SavePersonalDetails" asp-route-studentId="@Model.StudentId" class="btn btn-primary mr-2">Back</a>
             <button type="submit" class="btn btn-primary">Next</button>
         </div>
     </div>
@@ -176,7 +185,6 @@
     <partial name="_ValidationScriptsPartial" />
 }
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $.ajax({
         url: '/Students/GetCountries',

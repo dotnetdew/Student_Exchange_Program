@@ -309,7 +309,7 @@ public class StudentsController : Controller
             <body>
                 <img src='cid:email_west.png' alt='WIUT Logo' />
                 <p>Dear {StudentName},</p>
-                <p>It is our pleasure to inform you that you have been accepted onto the Westminster International University in Tashkent Exchange Programme.</p>
+                <p>It is our pleasure to inform you that you have been accepted onto the Westminster University in Tashkent Exchange Programme.</p>
                 <h3>Exchange Programme Details:</h3>
                 <p>Academic Year: 2024/25</p>
                 <p>Duration: One semester</p>
