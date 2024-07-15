@@ -15,7 +15,7 @@
         display: none;
         background-color: #fff;
         border: 1px solid #ddd;
-        border-radius: 10px;
+        border-radius: 0px;
         padding: 20px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         margin-bottom: 20px;
@@ -164,10 +164,10 @@
             <span asp-validation-for="EmailAddress" class="text-danger"></span>
         </div>
         <br /><br />
-        <div class="d-flex">
-            <p>*Denotes a mandatory field</p>
-            <button type="submit" class="btn btn-primary" style="margin-left: 600px; width: 100px;">Save</button>
-            <a asp-action="SaveEducationalDetails" asp-route-studentId="@Model.StudentId" class="btn btn-primary" style="margin-left: 100px; width: 100px;">Next</a>
+        <div class="d-flex justify-content-end">
+            <p style="margin-right: 800px;">*Denotes a mandatory field</p>
+            <a asp-action="SavePersonalDetails" asp-route-studentId="@Model.StudentId" class="btn btn-primary" style="margin-right: 10px;">Back</a>
+            <button type="submit" class="btn btn-primary">Next</button>
         </div>
     </div>
 </form>

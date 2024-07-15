@@ -178,10 +178,10 @@ public class RegisterModel : PageModel
                     </head>
                     <body>
                         <p>Dear {Input.ForeName},</p>
-                        <p>Thank you for your interest in applying for our Exchange Programme at the University of Westminster.</p>
+                        <p>Thank you for your interest in applying for our Exchange Programme at the Westminster University in Tashkent</p>
                         <p>We look forward to receiving your application.</p>
                         <p>Click <a href='{callbackUrl}'>here</a> to re-access the application form at any time.</p>
-                        <p>If you have any queries concerning your application, please email us at <a href='mailto:educationabroad@westminster.ac.uk'>educationabroad@westminster.ac.uk</a></p>
+                        <p>If you have any queries concerning your application, please email us at <a href='mailto:exchange@wiut.uz'>exchange@wiut.uz</a></p>
                         <p>With best wishes,</p>
                         <p>The Education Abroad Team</p>
                         <p>Application Ref: </p>
