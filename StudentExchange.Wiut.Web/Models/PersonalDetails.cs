@@ -23,7 +23,7 @@ public class PersonalDetails
     [Required]
     public string Gender { get; set; }
     [Required]
-    public string UniversityStudentId { get; set; }
+    public string UniversityStudentId { get; set; } // your home institute (sending institute) student number
     [Required]
     public string CountryOfBirth { get; set; }
     [Required]

@@ -1,4 +1,4 @@
-﻿namespace StudentExchange.Wiut.Web.Repositories;
+﻿namespace StudentExchange.Wiut.Web.Repositories.Interfaces;
 
 public interface IRepository<T> where T : class
 {

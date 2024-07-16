@@ -1,0 +1,131 @@
+﻿@model StudentExchange.Wiut.Web.ViewModels.Student.StudentDetailsVM
+
+<h1>Student Details</h1>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+@if (Model == null)
+{
+    <p>No data available for this student.</p>
+}
+else
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Personal Details</h2>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th>Title</th>
+                            <td>@Model.Title</td>
+                        </tr>
+                        <tr>
+                            <th>Forename</th>
+                            <td>@Model.ForeName</td>
+                        </tr>
+                        <tr>
+                            <th>Second Forename</th>
+                            <td>@Model.SecondForeName</td>
+                        </tr>
+                        <tr>
+                            <th>Third Forename</th>
+                            <td>@Model.ThirdForeName</td>
+                        </tr>
+                        <tr>
+                            <th>Family Name</th>
+                            <td>@Model.FamilyName</td>
+                        </tr>
+                        <tr>
+                            <th>Date of Birth</th>
+                            <td>@Model.DateOfBirth.ToShortDateString()</td>
+                        </tr>
+                        <!-- Add other personal details as needed -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-6">
+                <h2>Contact Details</h2>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th>Country</th>
+                            <td>@Model.Country</td>
+                        </tr>
+                        <tr>
+                            <th>Mobile Phone Number</th>
+                            <td>@Model.MobilePhoneNumber</td>
+                        </tr>
+                        <tr>
+                            <th>Other Phone Number</th>
+                            <td>@Model.OtherPhoneNumber</td>
+                        </tr>
+                        <!-- Add other contact details as needed -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Educational Details</h2>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th>Exchange Partner Institution</th>
+                            <td>@Model.ExchangePartnerInstitution</td>
+                        </tr>
+                        <tr>
+                            <th>Exact Name of Degree Programme</th>
+                            <td>@Model.ExactNameOfDegreeProgramme</td>
+                        </tr>
+                        <!-- Add other educational details as needed -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-6">
+                <h2>Disability Support</h2>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th>Have a Disability</th>
+                            <td>@Model.HaveADisablity</td>
+                        </tr>
+                        <!-- Add other disability details as needed -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Housing Details</h2>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th>Wish to Apply for Housing</th>
+                            <td>@Model.WishToApplyForHousingInUniversity</td>
+                        </tr>
+                        <!-- Add other housing details as needed -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-6">
+                <h2>Submission Details</h2>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th>Agreed to Statements</th>
+                            <td>@Model.AgreeToStatements</td>
+                        </tr>
+                        <tr>
+                            <th>Submission Created</th>
+                            <td>@Model.SubmissionCreated.ToShortDateString()</td>
+                        </tr>
+                        <!-- Add other submission details as needed -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+}
+@* 
+<a asp-area="Admin" asp-controller="Manage" asp-action="Index" class="btn btn-primary">Back</a> *@

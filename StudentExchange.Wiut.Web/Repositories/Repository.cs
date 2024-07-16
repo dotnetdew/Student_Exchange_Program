@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using StudentExchange.Wiut.Web.Data;
+using StudentExchange.Wiut.Web.Repositories.Interfaces;
 
 namespace StudentExchange.Wiut.Web.Repositories;
 

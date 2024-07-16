@@ -20,4 +20,40 @@ public class ApplicationDbContext : IdentityDbContext<Student>
     public DbSet<Housing> Housings { get; set; }
     public DbSet<Submission> Submissions { get; set; }
     public DbSet<IdentityRole> Roles {  get; set; }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+
+        modelBuilder.Entity<Student>()
+            .HasOne(s => s.PersonalDetails)
+            .WithOne(p => p.Student)
+            .HasForeignKey<PersonalDetails>(p => p.StudentId);
+
+        modelBuilder.Entity<Student>()
+            .HasOne(s => s.ContactDetails)
+            .WithOne(c => c.Student)
+            .HasForeignKey<ContactDetails>(c => c.StudentId);
+
+        modelBuilder.Entity<Student>()
+            .HasOne(s => s.EducationalDetails)
+            .WithOne(e => e.Student)
+            .HasForeignKey<EducationalDetails>(e => e.StudentId);
+
+        modelBuilder.Entity<Student>()
+            .HasOne(s => s.DisabilityLearningSupport)
+            .WithOne(d => d.Student)
+            .HasForeignKey<DisabilityLearningSupport>(d => d.StudentId);
+
+        modelBuilder.Entity<Student>()
+            .HasOne(s => s.Housing)
+            .WithOne(h => h.Student)
+            .HasForeignKey<Housing>(h => h.StudentId);
+
+        modelBuilder.Entity<Submission>()
+            .HasOne(s => s.Student)
+            .WithOne(s => s.Submission)
+            .HasForeignKey<Submission>(s => s.StudentId)
+            .IsRequired();
+    }
 }

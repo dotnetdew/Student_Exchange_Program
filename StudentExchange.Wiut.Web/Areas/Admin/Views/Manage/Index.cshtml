@@ -33,7 +33,7 @@
                             <td>@student.Email</td>
                             <td>@student.DateOfBirth.ToString("yyyy-MM-dd")</td>
                             <td>
-                                <a href="@Url.Action("Details", "Manage", new { area = "Admin", studentId = student.Id })" class="btn btn-primary btn-sm">Details</a>
+                                <a href="@Url.Action("StudentDetails", "Manage", new { area = "Admin", studentId = student.Id })" class="btn btn-primary btn-sm">Details</a>
                             </td>
                         </tr>
                     }

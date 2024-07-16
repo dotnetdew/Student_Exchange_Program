@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using StudentExchange.Wiut.Web.Data;
 using StudentExchange.Wiut.Web.Models;
 using StudentExchange.Wiut.Web.Repositories;
+using StudentExchange.Wiut.Web.Repositories.Interfaces;
 using StudentExchange.Wiut.Web.Services.EmailService;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,7 +21,12 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 //Email Service config
 builder.Services.AddTransient<IEmailSender, MailRuEmailSender>(provider =>
     new MailRuEmailSender("exchange@wiut.uz", "2873KLMS365"));
-
+builder.Services.AddScoped<IPersonalDetailsRepository, PersonalDetailsRepository>();
+builder.Services.AddScoped<IContactDetailsRepository, ContactDetailsRepository>();
+builder.Services.AddScoped<IEducationalDetailsRepository, EducationalDetailsRepository>();
+builder.Services.AddScoped<IDisabilityLearningSupportRepository, DisabilityLearningSupportRepository>();
+builder.Services.AddScoped<IHousingRepository, HousingRepository>();
+builder.Services.AddScoped<ISubmissionRepository,  SubmissionRepository>();
 builder.Services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
 
 builder.Services.AddDefaultIdentity<Student>(options =>

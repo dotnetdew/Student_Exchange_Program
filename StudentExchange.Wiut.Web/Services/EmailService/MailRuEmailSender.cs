@@ -18,7 +18,7 @@ public class MailRuEmailSender : IEmailSender
     public async Task SendEmailAsync(string toEmail, string subject, string messageBody)
     {
         MailMessage message = new MailMessage();
-        message.From = new MailAddress(email, "Westminster University in Tashkent");
+        message.From = new MailAddress(email, "Westminster International University in Tashkent");
         message.To.Add(toEmail);
         message.Subject = subject;
         message.Body = messageBody;

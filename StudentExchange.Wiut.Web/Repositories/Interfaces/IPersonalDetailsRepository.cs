@@ -1,9 +1,9 @@
 ﻿using StudentExchange.Wiut.Web.Models;
 
-namespace StudentExchange.Wiut.Web.Repositories
+namespace StudentExchange.Wiut.Web.Repositories.Interfaces
 {
     public interface IPersonalDetailsRepository : IRepository<PersonalDetails>
     {
-        public IQueryable<PersonalDetails> GetAllWithStudentId(string studentId);
+        public PersonalDetails GetByStudentId(string studentId);
     }
 }

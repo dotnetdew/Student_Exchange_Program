@@ -106,12 +106,12 @@
             </div>
             <div class="form-group col-md-6">
                 <label for="ThirdForeName">Third Forename</label>
-                <input asp-for="ThirdForeName" type="text" class="form-control" id="third-forename" name="thirdForeName">
+                <input asp-for="ThirdForeName" type="text" class="form-control" id="third-forename" name="ThirdForeName">
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="familyname">Family Name *</label>
+                <label for="FamilyName">Family Name *</label>
                 <input for="FamilyName" type="text" class="form-control" id="familyname" name="FamilyName" required>
                 <span asp-validation-for="FamilyName" class="text-danger"></span>
             </div>
@@ -143,7 +143,7 @@
                 <span asp-validation-for="Gender" class="text-danger"></span>
             </div>
             <div class="form-group col-md-6">
-                <label asp-for="UniversityStudentId">University Student ID *</label>
+                <label asp-for="UniversityStudentId">Your Home Institute (Sending Institute) Student Number *</label>
                 <input asp-for="UniversityStudentId" type="text" class="form-control" id="university-student-id" name="UniversityStudentId">
                 <span asp-validation-for="UniversityStudentId" class="text-danger"></span>
             </div>

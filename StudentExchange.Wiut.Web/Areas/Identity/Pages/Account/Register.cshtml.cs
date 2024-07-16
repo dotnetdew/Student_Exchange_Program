@@ -171,23 +171,24 @@ public class RegisterModel : PageModel
 
                 await _emailSender.SendEmailAsync(
                 Input.Email,
-                "Confirm your email",
+                "Confirm your email address",
                 $@"<html>
                     <head>
                         <title>Confirm your email</title>
                     </head>
                     <body>
                         <p>Dear {Input.ForeName},</p>
-                        <p>Thank you for your interest in applying for our Exchange Programme at the Westminster University in Tashkent</p>
+                        <p>Thank you for your interest in applying for the Student Exchange Programme at Westminster International University in Tashkent.</p>
                         <p>We look forward to receiving your application.</p>
                         <p>Click <a href='{callbackUrl}'>here</a> to re-access the application form at any time.</p>
-                        <p>If you have any queries concerning your application, please email us at <a href='mailto:exchange@wiut.uz'>exchange@wiut.uz</a></p>
+                        <p>Should you have any queries concerning your application, please do not hesitate to contact us via email.</p>
                         <p>With best wishes,</p>
-                        <p>The Education Abroad Team</p>
-                        <p>Application Ref: </p>
+                        <p>Sharon (Seow Yee) Ang<br>
+                        Senior Officer on International Studies<br>
+                        <a href='mailto:sang@wiut.uz'>sang@wiut.uz</a><br>
+                        Westminster International University in Tashkent</p>
                     </body>
                 </html>");
-
 
                 if (_userManager.Options.SignIn.RequireConfirmedAccount)
                 {

@@ -1,26 +1,8 @@
 ﻿@page
 @model RegisterConfirmationModel
-@* @{
+@{
     ViewData["Title"] = "Register confirmation";
 }
-
-<h1>@ViewData["Title"]</h1>
-@{
-    if (@Model.DisplayConfirmAccountLink)
-    {
-<p>
-    This app does not currently have a real email sender registered, see <a href="https://aka.ms/aspaccountconf">these docs</a> for how to configure a real email sender.
-    Normally this would be emailed: <a id="confirm-link" href="@Model.EmailConfirmationUrl">Click here to confirm your account</a>
-</p>
-    }
-    else
-    {
-<p>
-        Please check your email to confirm your account.
-</p>
-    }
-} *@
-
 
 <style>
     .card-custom {
@@ -67,9 +49,31 @@
         border-top: 1px solid #ddd;
         text-align: center;
     }
+
+    .header-title {
+        text-align: center;
+        margin: 20px 0;
+        font-size: 1.5rem;
+        color: #d9534f;
+    }
+
+    .header-logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+        .header-logo img {
+            max-width: 150px;
+            height: auto;
+        }
 </style>
 
 <div class="container">
+    <div class="header-title">
+        Student Exchange Application
+    </div>
     <div class="card card-custom">
         <div class="card-header card-header-custom">
             Verify Email
