@@ -11,5 +11,5 @@ public class Submission
     public DateTime SubmissionCreated {  get; set; }
     public string StudentId { get; set; }
     [ForeignKey("StudentId")]
-    public Student Student { get; set; }
+    public virtual Student Student { get; set; }
 }

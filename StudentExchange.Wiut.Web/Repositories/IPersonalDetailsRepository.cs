@@ -4,6 +4,6 @@ namespace StudentExchange.Wiut.Web.Repositories
 {
     public interface IPersonalDetailsRepository : IRepository<PersonalDetails>
     {
-        public IList<PersonalDetails> GetAllWithStudentId(int studentId);
+        public IQueryable<PersonalDetails> GetAllWithStudentId(string studentId);
     }
 }

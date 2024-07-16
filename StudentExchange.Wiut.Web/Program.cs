@@ -11,7 +11,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(connectionString));
+{
+    options.UseLazyLoadingProxies();
+    options.UseSqlServer(connectionString);
+});
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 //Email Service config
@@ -43,7 +46,7 @@ using (var scope = builder.Services.BuildServiceProvider().CreateScope())
 
 builder.Services.AddAuthorization(options =>
 {
-    options.AddPolicy("AdminPolicy", policy => policy.RequireRole("AdminRole"));
+    options.AddPolicy("AdminPolicy", policy => policy.RequireRole("Admin"));
 });
 
 
@@ -73,13 +76,11 @@ app.UseAuthorization();
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllerRoute(
+        name: "areas",
+        pattern: "{area:exists}/{controller=Manage}/{action=Index}/{id?}");
+    endpoints.MapControllerRoute(
         name: "default",
         pattern: "{controller=Home}/{action=Index}/{id?}");
-
-    endpoints.MapAreaControllerRoute(
-        name: "Admin",
-        areaName: "Admin",
-        pattern: "Admin/{controller=Manage}/{action=Index}/{id?}");
 });
 
 app.MapRazorPages();

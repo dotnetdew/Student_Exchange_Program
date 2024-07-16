@@ -9,8 +9,8 @@ public class PersonalDetailsRepository : Repository<PersonalDetails>, IPersonalD
     {
     }
 
-    public IList<PersonalDetails> GetAllWithStudentId(int studentId)
+    public IQueryable<PersonalDetails> GetAllWithStudentId(string studentId)
     {
-        return _context.Set<PersonalDetails>().Where(x => x.StudentId == studentId.ToString()).ToList();
+        return _context.Set<PersonalDetails>().Where(x => x.StudentId == studentId);
     }
 }

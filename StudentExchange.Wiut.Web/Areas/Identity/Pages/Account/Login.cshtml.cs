@@ -125,12 +125,12 @@ public class LoginModel : PageModel
                 {
                     if (await _userManager.IsInRoleAsync(user, "Admin"))
                     {
-                        return RedirectToActionPermanent("Index", "Manage", new { area = "Admin" });
+                        return LocalRedirect($"/Admin/Manage");
                     }
                     else
                     {
                         var user_id = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
-                        return LocalRedirect(Url.Content("~/Students/SavePersonalDetails") + $"?studentId={user_id}"); // Redirect non-admin to student details page
+                        return LocalRedirect(Url.Content("~/Students/SavePersonalDetails") + $"?studentId={user_id}");
                     }
                 }
                 //return RedirectToAction("~/Students/SavePersonalDetails", new { studentId = student.Id});

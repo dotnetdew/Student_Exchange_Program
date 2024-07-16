@@ -1,1 +1,48 @@
-﻿<h1>Admin Dashboard</h1>
+﻿@model IEnumerable<StudentExchange.Wiut.Web.ViewModels.Student.StudentVM>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="mb-4 text-center">Student List</h2>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>@Html.DisplayNameFor(m => m.Title)</th>
+                        <th>@Html.DisplayNameFor(m => m.ForeName)</th>
+                        <th>@Html.DisplayNameFor(m => m.FamilyName)</th>
+                        <th>@Html.DisplayNameFor(m => m.Email)</th>
+                        <th>@Html.DisplayNameFor(m => m.DateOfBirth)</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var student in Model)
+                    {
+                        <tr>
+                            <td>@student.Title</td>
+                            <td>@student.ForeName</td>
+                            <td>@student.FamilyName</td>
+                            <td>@student.Email</td>
+                            <td>@student.DateOfBirth.ToString("yyyy-MM-dd")</td>
+                            <td>
+                                <a href="@Url.Action("Details", "Manage", new { area = "Admin", studentId = student.Id })" class="btn btn-primary btn-sm">Details</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

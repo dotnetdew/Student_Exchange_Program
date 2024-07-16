@@ -43,17 +43,5 @@ public class PersonalDetails
     //Relationship
     public string StudentId { get; set; }
     [ForeignKey("StudentId")]
-    public Student Student { get; set; }
-
-    /*if (model.PassportFile != null && model.PassportFile.Length > 0)
-            {
-                using (var memoryStream = new MemoryStream())
-                {
-                    await model.PassportFile.CopyToAsync(memoryStream);
-                    model.PassportFileData = memoryStream.ToArray();
-                }
-                
-                model.PassportFileName = model.PassportFile.FileName;
-                model.PassportFileType = model.PassportFile.ContentType;
-            }*/
+    public virtual Student Student { get; set; }
 }

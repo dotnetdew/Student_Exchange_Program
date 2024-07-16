@@ -15,11 +15,11 @@ namespace StudentExchange.Wiut.Web.Models
         public string FamilyName { get; set; }
         [Required]
         public DateTime DateOfBirth { get; set; }
-        public ICollection<PersonalDetails> PersonalDetails { get; set; }
-        public ICollection<ContactDetails> ContactDetails { get; set; }
-        public ICollection<EducationalDetails> EducationalDetails { get; set; }
-        public ICollection<DisabilityLearningSupport> disabilityLearningSupports { get; set; }
-        public ICollection<Housing> Housings { get; set; }
-        public ICollection<Submission> Submissions { get; set; }
+        public virtual ICollection<PersonalDetails> PersonalDetails { get; set; }
+        public virtual ICollection<ContactDetails> ContactDetails { get; set; }
+        public virtual ICollection<EducationalDetails> EducationalDetails { get; set; }
+        public virtual ICollection<DisabilityLearningSupport> disabilityLearningSupports { get; set; }
+        public virtual ICollection<Housing> Housings { get; set; }
+        public virtual ICollection<Submission> Submissions { get; set; }
     }
 }

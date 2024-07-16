@@ -22,5 +22,5 @@ public class EducationalDetails
     //Relationship
     public string StudentId { get; set; }
     [ForeignKey("StudentId")]
-    public Student Student { get; set; }
+    public virtual Student Student { get; set; }
 }
