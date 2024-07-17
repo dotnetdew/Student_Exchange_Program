@@ -4,12 +4,10 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="~/js/toastr.min.js"></script>
 
-@if (ViewBag.Saved != null)
-{
-    <script>
-        toastr.success("Successfully saved!");
-    </script>
-}
+<script>
+    toastr.success("Successfully saved!");
+</script>
+
 <style>
     .form-section {
         background-color: #fff;
@@ -100,7 +98,7 @@
 
         <div class="form-group">
             <label asp-for="WishToApplyForHousingInUniversity" class="control-label">Do you wish to apply for a place in Westminster International University in Tashkent dormitory? *</label>
-            <select asp-for="WishToApplyForHousingInUniversity" class="form-control form-select" id="WishToApplyForHousingInUniversity" name="WishToApplyForHousingInUniversity">
+            <select asp-for="WishToApplyForHousingInUniversity" class="form-control form-select" id="WishToApplyForHousingInUniversity" name="WishToApplyForHousingInUniversity" style="height: 40px;">
                 <option selected disabled></option>
                 <option>Yes</option>
                 <option>No</option>

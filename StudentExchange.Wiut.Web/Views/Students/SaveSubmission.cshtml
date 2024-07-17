@@ -64,7 +64,7 @@
     .btn-primary {
         background-color: #1f5f8a; /* even darker blue button color */
         border-color: #1f5f8a;
-        color: #fff; /* white text color */
+        color: #fff;
         padding: 10px 20px;
         border-radius: 5px;
         cursor: pointer;
@@ -83,16 +83,23 @@
     <div id="personal-details" class="form-section active">
         <h3>Your Uploaded Evidence</h3>
         <hr />
-        <p>You have not uploaded any evidence</p>
+        @if (ViewBag.PassportFile != null)
+        {
+            <a asp-controller="Students" asp-action="DisplayPassport" asp-route-studentId="@Model.StudentId">View passport file</a>
+        }
+        else
+        {
+            <p>You have not uploaded any evidence.</p>
+        }
         <br />
-
+        <br />
         <h3>Declaration Statements</h3>
         <br />
         <p>I confirm that I am submitting this application on the basis that I have read the following declarations and I confirm as follows:</p>
         <ul>
             <li>I confirm that all the details I have provided are true, accurate and complete.</li>
             <li>I understand that I am making this application which is subject to the relevant terms and conditions for visiting incoming exchange students.</li>
-            <li>I confirm that I am making an application to the incoming exchange programme on the understanding that the modules in the Incoming Exchange Module Catalogues are issued on the express condition that all matters in them are subject to change from time to time. In particular, the Westminster International University in Tashkent will use all reasonable endeavours to deliver courses, programmes of study and other educational services, circumstances may change. The University of Westminster reserves the right to vary the content and delivery of courses, in line with the Incoming Student Terms and Conditions document.</li>
+            <li>I confirm that I am making an application to the incoming exchange programme on the understanding that the modules in the Incoming Exchange Module Catalogues are issued on the express condition that all matters in them are subject to change from time to time. In particular, the Westminster International University in Tashkent will use all reasonable endeavours to deliver courses, programmes of study and other educational services, circumstances may change. The Westminster International University in Tashkent reserves the right to vary the content and delivery of courses, in line with the Incoming Student Terms and Conditions document.</li>
             <li>I confirm that I have actively researched the University housing options for exchange students and the location of the housing in relation to my intended campus(es) of study. I understand that I am not able to change my housing once I arrive and should only accept an offer of housing once I have a full understanding.</li>
             <li>I confirm that I intend and am able to attend all lessons / classes as part of my exchange programme at the Westminster International University in Tashkent.</li>
         </ul>
@@ -102,7 +109,7 @@
         <br />
         <p>Before applying, please note the following information about how we will use the information you provide:</p>
         <ul>
-            <li>We'll use the information you provide (and other personal data about you) to process your application and, if you are accepted, in connection with the exchange programme and for certain purposes connected with the running of the Westminster International University in Tashkent, both while you are studying with us and after you have left. These purposes include managing relationships with you, complying with legal requirements to which we are subject, and fulfilling our obligations to you in relation to the exchange programme. The University of Westminster will process your personal data in accordance with Admission (Academic Registrar's Office) and other related legislation as amended or superseded.</li>
+            <li>We'll use the information you provide (and other personal data about you) to process your application and, if you are accepted, in connection with the exchange programme and for certain purposes connected with the running of the Westminster International University in Tashkent, both while you are studying with us and after you have left. These purposes include managing relationships with you, complying with legal requirements to which we are subject, and fulfilling our obligations to you in relation to the exchange programme. The Westminster International University in Tashkent will process your personal data in accordance with Admission (Academic Registrar's Office) and other related legislation as amended or superseded.</li>
             <li>Information about you will be shared by the Westminster International University in Tashkent with your home university. The information that is shared will include information relating to your application, enrolment and any issues arising from your participation in the exchange programme. If you and/or your home university are outside of the European Economic Area, we will have to transfer information about you to the relevant country, where different data protection laws apply.</li>
             <li>If you are accepted and come to study at the Westminster International University in Tashkent, medical information about you may be disclosed to relevant staff including those from the Halls of Residence, the Counselling Service, the Advice Service and the Student Health Service.</li>
             <li>Personal data about you may also be transferred to third parties who provide services to the Westminster International University in Tashkent on the basis that it is provided in confidence and limited to those individuals who need access to the information.</li>
@@ -118,7 +125,6 @@
                     <li>You will not be able to change your application once you have submitted it</li>
                     <li>An auto-acknowledgement email confirming the submission of your application will be sent to <i>@Model.EmailAddress</i></li>
                     <li>You will be able to see and print your completed application after submission</li>
-                    <li>If you wish to review all pages of your application in one screen prior to submission, please click the Preview button in the Application Checklist menu</li>
                     <li>You must complete all mandatory fields across the application form before you can submit</li>
                 </ul>
                 <div class="center-btn">

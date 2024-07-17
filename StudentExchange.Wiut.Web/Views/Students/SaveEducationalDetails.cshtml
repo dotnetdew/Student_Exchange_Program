@@ -6,12 +6,10 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="~/js/toastr.min.js"></script>
 
-@if (ViewBag.Saved != null)
-{
-    <script>
-        toastr.success("Successfully saved!");
-    </script>
-}
+<script>
+    toastr.success("Successfully saved!");
+</script>
+
 <style>
     .form-section {
         display: none;
@@ -91,7 +89,7 @@
         </div>
         <div class="form-group">
             <label asp-for="TotalLengthOfDegreeProgrammeInYears">Total length of degree programme in years *</label>
-            <select asp-for="TotalLengthOfDegreeProgrammeInYears" class="form-control form-select" id="TotalLengthOfDegreeProgrammeInYears" name="TotalLengthOfDegreeProgrammeInYears">
+            <select asp-for="TotalLengthOfDegreeProgrammeInYears" class="form-control form-select" id="TotalLengthOfDegreeProgrammeInYears" name="TotalLengthOfDegreeProgrammeInYears" style="height: 40px;">
                 <option selected disabled></option>
                 <option>1</option>
                 <option>2</option>
@@ -109,7 +107,7 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label asp-for="ExpectedMonthOfGraduation">Expected month of graduation *</label>
-                <select asp-for="ExpectedMonthOfGraduation" class="form-control form-select" id="ExpectedMonthOfGraduation" name="ExpectedMonthOfGraduation">
+                <select asp-for="ExpectedMonthOfGraduation" class="form-control form-select" id="ExpectedMonthOfGraduation" name="ExpectedMonthOfGraduation" style="height: 41px;">
                     <option selected disabled></option>
                     <option>Jan</option>
                     <option>Feb</option>
@@ -128,7 +126,7 @@
             </div>
             <div class="form-group col-md-6">
                 <label asp-for="ExpectedYearOfGraduation">Year *</label>
-                <select asp-for="ExpectedYearOfGraduation" class="form-control form-select" id="ExpectedYearOfGraduation" name="ExpectedYearOfGraduation">
+                <select asp-for="ExpectedYearOfGraduation" class="form-control form-select" id="ExpectedYearOfGraduation" name="ExpectedYearOfGraduation" style="height: 40px;">
                     <option selected disabled></option>
                     <option>2024</option>
                     <option>2025</option>
@@ -147,7 +145,7 @@
         </div>
         <div class="form-group">
             <label asp-for="IsEnglishFirstLanguage">Is English your first language? *</label>
-            <select asp-for="IsEnglishFirstLanguage" class="form-control form-select" id="IsEnglishFirstLanguage" name="IsEnglishFirstLanguage">
+            <select asp-for="IsEnglishFirstLanguage" class="form-control form-select" id="IsEnglishFirstLanguage" name="IsEnglishFirstLanguage" style="height: 40px;">
                 <option selected disabled></option>
                 <option>Yes</option>
                 <option>No</option>

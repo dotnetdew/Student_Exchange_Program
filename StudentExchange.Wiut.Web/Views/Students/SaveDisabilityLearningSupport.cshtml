@@ -6,12 +6,10 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="~/js/toastr.min.js"></script>
 
-@if (ViewBag.Saved != null)
-{
-    <script>
-        toastr.success("Successfully saved!");
-    </script>
-}
+<script>
+    toastr.success("Successfully saved!");
+</script>
+
 <style>
     .form-section {
         display: none;
@@ -92,7 +90,7 @@
 
         <div class="form-group">
             <label asp-for="HaveADisablity" class="control-label">Do you have a disability or condition that affects your studies? *</label>
-            <select asp-for="HaveADisablity" class="form-control form-select" id="HaveADisablity" name="HaveADisablity">
+            <select asp-for="HaveADisablity" class="form-control form-select" id="HaveADisablity" name="HaveADisablity" style="height: 40px;">
                 <option selected disabled></option>
                 <option>Yes</option>
                 <option>No</option>

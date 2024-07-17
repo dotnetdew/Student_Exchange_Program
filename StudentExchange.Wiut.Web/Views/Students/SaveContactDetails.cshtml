@@ -6,12 +6,10 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="~/js/toastr.min.js"></script>
 
-@if (ViewBag.Saved != null)
-{
-    <script>
-        toastr.success("Successfully saved!");
-    </script>
-}
+<script>
+    toastr.success("Successfully saved!");
+</script>
+
 <style>
     .form-section {
         display: none;
@@ -23,41 +21,41 @@
         margin-bottom: 20px;
     }
 
-        .form-section h3 {
-            margin-top: 0;
-            font-weight: bold;
-            color: #0b459f;
-        }
+    .form-section h3 {
+        margin-top: 0;
+        font-weight: bold;
+        color: #0b459f;
+    }
 
-        .form-section.active {
-            display: block;
-        }
+    .form-section.active {
+        display: block;
+    }
 
-        .form-section .form-group {
-            margin-bottom: 20px;
-        }
+    .form-section .form-group {
+        margin-bottom: 20px;
+    }
 
-        .form-section .form-control {
-            height: 40px;
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-        }
+    .form-section .form-control {
+        height: 40px;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+    }
 
-        .form-section .btn {
-            padding: 10px 20px;
-            font-size: 16px;
-            font-weight: bold;
-            border: none;
-            border-radius: 5px;
-            background-color: #0b459f;
-            color: #fff;
-            cursor: pointer;
-        }
+    .form-section .btn {
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        border: none;
+        border-radius: 5px;
+        background-color: #0b459f;
+        color: #fff;
+        cursor: pointer;
+    }
 
-            .form-section .btn:hover {
-                background-color: #23527c;
-            }
+    .form-section .btn:hover {
+        background-color: #23527c;
+    }
 
     #personal-details {
         border-color: #0b459f;
@@ -84,7 +82,7 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label asp-for="Country">Country *</label>
-                <select asp-for="Country" class="form-control form-select" id="country_contact" name="Country">
+                <select asp-for="Country" class="form-control form-select" id="country_contact" name="Country" style="height: 42px;">
                     <option value="" selected disabled></option>
                 </select>
                 <span asp-validation-for="Country" class="text-danger"></span>
@@ -107,7 +105,7 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label asp-for="NextOfKinTitle">Title *</label>
-                <select asp-for="NextOfKinTitle" class="form-control form-select" id="NextOfKinTitle" name="NextOfKinTitle">
+                <select asp-for="NextOfKinTitle" class="form-control form-select" id="NextOfKinTitle" name="NextOfKinTitle" style="height: 40px;">
                     <option selected disabled></option>
                     <option>Mr</option>
                     <option>Miss</option>
@@ -133,7 +131,7 @@
             </div>
             <div class="form-group col-md-6">
                 <label asp-for="Relationship">Relationship *</label>
-                <select asp-for="Relationship" class="form-control form-select" id="Relationship" name="Relationship">
+                <select asp-for="Relationship" class="form-control form-select" id="Relationship" name="Relationship" style="height: 40px;">
                     <option selected disabled></option>
                     <option>Child e.g. daughter/son</option>
                     <option>Friend</option>
@@ -149,7 +147,7 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label asp-for="NextOfKinCountry">Country *</label>
-                <select asp-for="NextOfKinCountry" class="form-control form-select" id="NextOfKinCountry" name="NextOfKinCountry">
+                <select asp-for="NextOfKinCountry" class="form-control form-select" id="NextOfKinCountry" name="NextOfKinCountry" style="height: 42px;">
                     <option value="" selected disabled></option>
                 </select>
                 <span asp-validation-for="NextOfKinCountry" class="text-danger"></span>
