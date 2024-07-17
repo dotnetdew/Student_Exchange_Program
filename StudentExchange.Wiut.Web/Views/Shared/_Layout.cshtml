@@ -17,17 +17,27 @@
     <!-- Add these lines in your _Layout.cshtml or directly in your view -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <style>
+        @@media screen and (max-width: 480px) {
+            .wu-header-title {
+                font-size: 1rem;
+            }
 
+            .wu-logo {
+                width: 100px;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 py-2">
             <div class="container">
                 <div class="d-flex align-items-center justify-content-between w-100">
-                    <img src="~/images/westlogo.png" width="150" height="auto" alt="Alternate Text" />
-                    <h5 style="color: black; text-align: center;"><strong>Student Exchange Application</strong></h5>
+                    <img src="~/images/westlogo.png" class="wu-logo" width="130" height="auto" alt="Alternate Text" />
+                    <h5 class="wu-header-title mb-0 px-3" style="color: black; text-align: center;"><strong>Student Exchange Application</strong></h5>
                     <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
-                        <button type="submit" class="nav-link btn btn-link text-dark">
+                        <button type="submit" class="nav-link btn btn-link text-dark pe-0">
                             <img src="~/images/icons8-logout-96.png" alt="Logout" height="35" width="35" />
                         </button>
                     </form>

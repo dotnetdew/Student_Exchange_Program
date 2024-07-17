@@ -76,6 +76,7 @@ public class ManageController : Controller
         var studentDetailsVM = new StudentDetailsVM
         {
             // Populate student details
+            Id = student.Id,
             Title = student?.Title,
             ForeName = student?.ForeName,
             ForeName2 = student?.ForeName2,

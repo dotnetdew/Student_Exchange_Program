@@ -1,4 +1,5 @@
 ﻿@model StudentExchange.Wiut.Web.ViewModels.Student.StudentDetailsVM
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 <h1>Student Details</h1>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -38,6 +39,46 @@ else
                             <th>Date of Birth</th>
                             <td>@Model.DateOfBirth.ToShortDateString()</td>
                         </tr>
+                        <tr>
+                            <th>Preffered Name</th>
+                            <td>@Model.PrefferedName</td>
+                        </tr>
+                        <tr>
+                            <th>Previous Family name</th>
+                            <td>@Model.PreviousFamilyName</td>
+                        </tr>
+                        <tr>
+                            <th>Gender</th>
+                            <td>@Model.Gender</td>
+                        </tr>
+                        <tr>
+                            <th>Home institute (sending institute) student number</th>
+                            <td>@Model.UniversityStudentId</td>
+                        </tr>
+                        <tr>
+                            <th>Country Of Birth</th>
+                            <td>@Model.CountryOfBirth</td>
+                        </tr>
+                        <tr>
+                            <th>Nationality</th>
+                            <td>@Model.Nationality</td>
+                        </tr>
+                        <tr>
+                            <th>Passport Number</th>
+                            <td>@Model.PassportNumber</td>
+                        </tr>
+                        <tr>
+                            <th>Date of Issue (passport)</th>
+                            <td>@Model.DateOfIssue.ToShortDateString()</td>
+                        </tr>
+                        <tr>
+                            <th>Date of Expiry</th>
+                            <td>@Model.DateOfExpiry.ToShortDateString()</td>
+                        </tr>
+                        <tr>
+                            <th>Passport file</th>
+                            <td><a asp-area="" asp-controller="Students" asp-action="DisplayPassport" asp-route-studentId="@Model.Id">Download</a></td>
+                        </tr>
                         <!-- Add other personal details as needed -->
                     </tbody>
                 </table>
@@ -58,6 +99,38 @@ else
                             <th>Other Phone Number</th>
                             <td>@Model.OtherPhoneNumber</td>
                         </tr>
+                        <tr>
+                            <th>Next of Kin Title</th>
+                            <td>@Model.NextOfKinTitle</td>
+                        </tr>
+                        <tr>
+                            <th>Next of Kin Forename</th>
+                            <td>@Model.NextOfKinForeName</td>
+                        </tr>
+                        <tr>
+                            <th>Next of Kin Surname</th>
+                            <td>@Model.NextOfKinSurName</td>
+                        </tr>
+                        <tr>
+                            <th>Relationship</th>
+                            <td>@Model.Relationship</td>
+                        </tr>
+                        <tr>
+                            <th>Next of Kin Country</th>
+                            <td>@Model.NextOfKinCountry</td>
+                        </tr>
+                        <tr>
+                            <th>Next of Kin mobile phone</th>
+                            <td>@Model.NextOfKinMobilePhone</td>
+                        </tr>
+                        <tr>
+                            <th>Next of Kin other phone</th>
+                            <td>@Model.NextOfKinOtherPhone</td>
+                        </tr>
+                        <tr>
+                            <th>Next of Kin Email</th>
+                            <td>@Model.EmailAddress</td>
+                        </tr>
                         <!-- Add other contact details as needed -->
                     </tbody>
                 </table>
@@ -76,6 +149,22 @@ else
                         <tr>
                             <th>Exact Name of Degree Programme</th>
                             <td>@Model.ExactNameOfDegreeProgramme</td>
+                        </tr>
+                        <tr>
+                            <th>Total Length Of Degre eProgramme In Years</th>
+                            <td>@Model.TotalLengthOfDegreeProgrammeInYears</td>
+                        </tr>
+                        <tr>
+                            <th>Expected Year Of Graduation</th>
+                            <td>@Model.ExpectedYearOfGraduation</td>
+                        </tr>
+                        <tr>
+                            <th>Expected month Of Graduation</th>
+                            <td>@Model.ExpectedMonthOfGraduation</td>
+                        </tr>
+                        <tr>
+                            <th>Is English First Language</th>
+                            <td>@Model.IsEnglishFirstLanguage</td>
                         </tr>
                         <!-- Add other educational details as needed -->
                     </tbody>
