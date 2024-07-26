@@ -15,7 +15,7 @@ namespace StudentExchange.Wiut.Web.Models
         public string FamilyName { get; set; }
         [Required]
         public DateTime DateOfBirth { get; set; }
-
+        public string Status { get; set; } = "to be confirmed";
         public virtual PersonalDetails PersonalDetails { get; set; }
         public virtual ContactDetails ContactDetails { get; set; }
         public virtual EducationalDetails EducationalDetails { get; set; }

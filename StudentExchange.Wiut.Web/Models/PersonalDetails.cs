@@ -40,6 +40,9 @@ public class PersonalDetails
     public string PassportFileName { get; set; }
     [Required]
     public string PassportFileType { get; set; }
+    [Required]
+    public virtual ICollection<FileDetail> FileDetails { get; set; }
+
     //Relationship
     public string StudentId { get; set; }
     [ForeignKey("StudentId")]

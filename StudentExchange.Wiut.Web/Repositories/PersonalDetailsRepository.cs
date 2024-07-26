@@ -14,4 +14,5 @@ public class PersonalDetailsRepository : Repository<PersonalDetails>, IPersonalD
     {
         return _context.Set<PersonalDetails>().FirstOrDefault(x => x.StudentId == studentId);
     }
+
 }

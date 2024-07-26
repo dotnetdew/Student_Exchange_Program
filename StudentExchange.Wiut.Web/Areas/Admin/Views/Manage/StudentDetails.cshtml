@@ -1,220 +1,255 @@
 ﻿@model StudentExchange.Wiut.Web.ViewModels.Student.StudentDetailsVM
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
-<h1>Student Details</h1>
+<h1 class="text-center my-4">Student Details</h1>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<style>
+    .card-header {
+        background-color: #007bff;
+        color: white;
+    }
+
+    .table th, .table td {
+        vertical-align: middle;
+    }
+</style>
 @if (Model == null)
 {
-    <p>No data available for this student.</p>
+    <div class="alert alert-warning text-center">
+        No data available for this student.
+    </div>
 }
 else
 {
     <div class="container">
         <div class="row">
-            <div class="col-md-6">
-                <h2>Personal Details</h2>
-                <table class="table">
-                    <tbody>
-                        <tr>
-                            <th>Title</th>
-                            <td>@Model.Title</td>
-                        </tr>
-                        <tr>
-                            <th>Forename</th>
-                            <td>@Model.ForeName</td>
-                        </tr>
-                        <tr>
-                            <th>Second Forename</th>
-                            <td>@Model.SecondForeName</td>
-                        </tr>
-                        <tr>
-                            <th>Third Forename</th>
-                            <td>@Model.ThirdForeName</td>
-                        </tr>
-                        <tr>
-                            <th>Family Name</th>
-                            <td>@Model.FamilyName</td>
-                        </tr>
-                        <tr>
-                            <th>Date of Birth</th>
-                            <td>@Model.DateOfBirth.ToShortDateString()</td>
-                        </tr>
-                        <tr>
-                            <th>Preffered Name</th>
-                            <td>@Model.PrefferedName</td>
-                        </tr>
-                        <tr>
-                            <th>Previous Family name</th>
-                            <td>@Model.PreviousFamilyName</td>
-                        </tr>
-                        <tr>
-                            <th>Gender</th>
-                            <td>@Model.Gender</td>
-                        </tr>
-                        <tr>
-                            <th>Home institute (sending institute) student number</th>
-                            <td>@Model.UniversityStudentId</td>
-                        </tr>
-                        <tr>
-                            <th>Country Of Birth</th>
-                            <td>@Model.CountryOfBirth</td>
-                        </tr>
-                        <tr>
-                            <th>Nationality</th>
-                            <td>@Model.Nationality</td>
-                        </tr>
-                        <tr>
-                            <th>Passport Number</th>
-                            <td>@Model.PassportNumber</td>
-                        </tr>
-                        <tr>
-                            <th>Date of Issue (passport)</th>
-                            <td>@Model.DateOfIssue.ToShortDateString()</td>
-                        </tr>
-                        <tr>
-                            <th>Date of Expiry</th>
-                            <td>@Model.DateOfExpiry.ToShortDateString()</td>
-                        </tr>
-                        <tr>
-                            <th>Passport file</th>
-                            <td><a asp-area="" asp-controller="Students" asp-action="DisplayPassport" asp-route-studentId="@Model.Id">Download</a></td>
-                        </tr>
-                        <!-- Add other personal details as needed -->
-                    </tbody>
-                </table>
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        Personal Details
+                    </div>
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th>Title</th>
+                                <td>@Model.Title</td>
+                            </tr>
+                            <tr>
+                                <th>Forename</th>
+                                <td>@Model.ForeName</td>
+                            </tr>
+                            <tr>
+                                <th>Second Forename</th>
+                                <td>@Model.SecondForeName</td>
+                            </tr>
+                            <tr>
+                                <th>Third Forename</th>
+                                <td>@Model.ThirdForeName</td>
+                            </tr>
+                            <tr>
+                                <th>Family Name</th>
+                                <td>@Model.FamilyName</td>
+                            </tr>
+                            <tr>
+                                <th>Date of Birth</th>
+                                <td>@Model.DateOfBirth.ToShortDateString()</td>
+                            </tr>
+                            <tr>
+                                <th>Preferred Name</th>
+                                <td>@Model.PrefferedName</td>
+                            </tr>
+                            <tr>
+                                <th>Previous Family Name</th>
+                                <td>@Model.PreviousFamilyName</td>
+                            </tr>
+                            <tr>
+                                <th>Gender</th>
+                                <td>@Model.Gender</td>
+                            </tr>
+                            <tr>
+                                <th>Home Institute Student Number</th>
+                                <td>@Model.UniversityStudentId</td>
+                            </tr>
+                            <tr>
+                                <th>Country Of Birth</th>
+                                <td>@Model.CountryOfBirth</td>
+                            </tr>
+                            <tr>
+                                <th>Nationality</th>
+                                <td>@Model.Nationality</td>
+                            </tr>
+                            <tr>
+                                <th>Passport Number</th>
+                                <td>@Model.PassportNumber</td>
+                            </tr>
+                            <tr>
+                                <th>Date of Issue</th>
+                                <td>@Model.DateOfIssue.ToShortDateString()</td>
+                            </tr>
+                            <tr>
+                                <th>Date of Expiry</th>
+                                <td>@Model.DateOfExpiry.ToShortDateString()</td>
+                            </tr>
+                            <tr>
+                                <th>Passport File</th>
+                                <td><a asp-area="" asp-controller="Students" asp-action="DisplayPassport" asp-route-studentId="@Model.Id" class="btn btn-link">Download</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <div class="col-md-6">
-                <h2>Contact Details</h2>
-                <table class="table">
-                    <tbody>
-                        <tr>
-                            <th>Country</th>
-                            <td>@Model.Country</td>
-                        </tr>
-                        <tr>
-                            <th>Mobile Phone Number</th>
-                            <td>@Model.MobilePhoneNumber</td>
-                        </tr>
-                        <tr>
-                            <th>Other Phone Number</th>
-                            <td>@Model.OtherPhoneNumber</td>
-                        </tr>
-                        <tr>
-                            <th>Next of Kin Title</th>
-                            <td>@Model.NextOfKinTitle</td>
-                        </tr>
-                        <tr>
-                            <th>Next of Kin Forename</th>
-                            <td>@Model.NextOfKinForeName</td>
-                        </tr>
-                        <tr>
-                            <th>Next of Kin Surname</th>
-                            <td>@Model.NextOfKinSurName</td>
-                        </tr>
-                        <tr>
-                            <th>Relationship</th>
-                            <td>@Model.Relationship</td>
-                        </tr>
-                        <tr>
-                            <th>Next of Kin Country</th>
-                            <td>@Model.NextOfKinCountry</td>
-                        </tr>
-                        <tr>
-                            <th>Next of Kin mobile phone</th>
-                            <td>@Model.NextOfKinMobilePhone</td>
-                        </tr>
-                        <tr>
-                            <th>Next of Kin other phone</th>
-                            <td>@Model.NextOfKinOtherPhone</td>
-                        </tr>
-                        <tr>
-                            <th>Next of Kin Email</th>
-                            <td>@Model.EmailAddress</td>
-                        </tr>
-                        <!-- Add other contact details as needed -->
-                    </tbody>
-                </table>
+
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        Contact Details
+                    </div>
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th>Country</th>
+                                <td>@Model.Country</td>
+                            </tr>
+                            <tr>
+                                <th>Mobile Phone Number</th>
+                                <td>@Model.MobilePhoneNumber</td>
+                            </tr>
+                            <tr>
+                                <th>Other Phone Number</th>
+                                <td>@Model.OtherPhoneNumber</td>
+                            </tr>
+                            <tr>
+                                <th>Next of Kin Title</th>
+                                <td>@Model.NextOfKinTitle</td>
+                            </tr>
+                            <tr>
+                                <th>Next of Kin Forename</th>
+                                <td>@Model.NextOfKinForeName</td>
+                            </tr>
+                            <tr>
+                                <th>Next of Kin Surname</th>
+                                <td>@Model.NextOfKinSurName</td>
+                            </tr>
+                            <tr>
+                                <th>Relationship</th>
+                                <td>@Model.Relationship</td>
+                            </tr>
+                            <tr>
+                                <th>Next of Kin Country</th>
+                                <td>@Model.NextOfKinCountry</td>
+                            </tr>
+                            <tr>
+                                <th>Next of Kin Mobile Phone</th>
+                                <td>@Model.NextOfKinMobilePhone</td>
+                            </tr>
+                            <tr>
+                                <th>Next of Kin Other Phone</th>
+                                <td>@Model.NextOfKinOtherPhone</td>
+                            </tr>
+                            <tr>
+                                <th>Next of Kin Email</th>
+                                <td>@Model.EmailAddress</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-md-6">
-                <h2>Educational Details</h2>
-                <table class="table">
-                    <tbody>
-                        <tr>
-                            <th>Exchange Partner Institution</th>
-                            <td>@Model.ExchangePartnerInstitution</td>
-                        </tr>
-                        <tr>
-                            <th>Exact Name of Degree Programme</th>
-                            <td>@Model.ExactNameOfDegreeProgramme</td>
-                        </tr>
-                        <tr>
-                            <th>Total Length Of Degre eProgramme In Years</th>
-                            <td>@Model.TotalLengthOfDegreeProgrammeInYears</td>
-                        </tr>
-                        <tr>
-                            <th>Expected Year Of Graduation</th>
-                            <td>@Model.ExpectedYearOfGraduation</td>
-                        </tr>
-                        <tr>
-                            <th>Expected month Of Graduation</th>
-                            <td>@Model.ExpectedMonthOfGraduation</td>
-                        </tr>
-                        <tr>
-                            <th>Is English First Language</th>
-                            <td>@Model.IsEnglishFirstLanguage</td>
-                        </tr>
-                        <!-- Add other educational details as needed -->
-                    </tbody>
-                </table>
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        Educational Details
+                    </div>
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th>Exchange Partner Institution</th>
+                                <td>@Model.ExchangePartnerInstitution</td>
+                            </tr>
+                            <tr>
+                                <th>Exact Name of Degree Programme</th>
+                                <td>@Model.ExactNameOfDegreeProgramme</td>
+                            </tr>
+                            <tr>
+                                <th>Total Length Of Degree Programme In Years</th>
+                                <td>@Model.TotalLengthOfDegreeProgrammeInYears</td>
+                            </tr>
+                            <tr>
+                                <th>Expected Year Of Graduation</th>
+                                <td>@Model.ExpectedYearOfGraduation</td>
+                            </tr>
+                            <tr>
+                                <th>Expected Month Of Graduation</th>
+                                <td>@Model.ExpectedMonthOfGraduation</td>
+                            </tr>
+                            <tr>
+                                <th>Is English First Language</th>
+                                <td>@Model.IsEnglishFirstLanguage</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <div class="col-md-6">
-                <h2>Disability Support</h2>
-                <table class="table">
-                    <tbody>
-                        <tr>
-                            <th>Have a Disability</th>
-                            <td>@Model.HaveADisablity</td>
-                        </tr>
-                        <!-- Add other disability details as needed -->
-                    </tbody>
-                </table>
+
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        Disability Support
+                    </div>
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th>Have a Disability</th>
+                                <td>@Model.HaveADisablity</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-md-6">
-                <h2>Housing Details</h2>
-                <table class="table">
-                    <tbody>
-                        <tr>
-                            <th>Wish to Apply for Housing</th>
-                            <td>@Model.WishToApplyForHousingInUniversity</td>
-                        </tr>
-                        <!-- Add other housing details as needed -->
-                    </tbody>
-                </table>
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        Housing Details
+                    </div>
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th>Wish to Apply for Housing</th>
+                                <td>@Model.WishToApplyForHousingInUniversity</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <div class="col-md-6">
-                <h2>Submission Details</h2>
-                <table class="table">
-                    <tbody>
-                        <tr>
-                            <th>Agreed to Statements</th>
-                            <td>@Model.AgreeToStatements</td>
-                        </tr>
-                        <tr>
-                            <th>Submission Created</th>
-                            <td>@Model.SubmissionCreated.ToShortDateString()</td>
-                        </tr>
-                        <!-- Add other submission details as needed -->
-                    </tbody>
-                </table>
+
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        Submission Details
+                    </div>
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th>Agreed to Statements</th>
+                                <td>@Model.AgreeToStatements</td>
+                            </tr>
+                            <tr>
+                                <th>Submission Created</th>
+                                <td>@Model.SubmissionCreated.ToShortDateString()</td>
+                            </tr>
+                            <tr>
+                                <th>Status</th>
+                                <td>@Model.Status</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
 }
-@* 
-<a asp-area="Admin" asp-controller="Manage" asp-action="Index" class="btn btn-primary">Back</a> *@

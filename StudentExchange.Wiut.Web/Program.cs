@@ -27,6 +27,7 @@ builder.Services.AddScoped<IEducationalDetailsRepository, EducationalDetailsRepo
 builder.Services.AddScoped<IDisabilityLearningSupportRepository, DisabilityLearningSupportRepository>();
 builder.Services.AddScoped<IHousingRepository, HousingRepository>();
 builder.Services.AddScoped<ISubmissionRepository,  SubmissionRepository>();
+builder.Services.AddScoped<IFileDetailRepository, FileDetailRepository>();
 builder.Services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
 
 builder.Services.AddDefaultIdentity<Student>(options =>

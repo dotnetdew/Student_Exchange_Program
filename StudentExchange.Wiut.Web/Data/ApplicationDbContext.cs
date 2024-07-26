@@ -20,7 +20,7 @@ public class ApplicationDbContext : IdentityDbContext<Student>
     public DbSet<Housing> Housings { get; set; }
     public DbSet<Submission> Submissions { get; set; }
     public DbSet<IdentityRole> Roles {  get; set; }
-
+    public DbSet<FileDetail> FileDetails { get; set; }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);

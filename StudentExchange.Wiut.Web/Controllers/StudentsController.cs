@@ -26,6 +26,7 @@ public class StudentsController : Controller
     private readonly ISubmissionRepository _submissionRepo;
     private readonly IRepository<Student> _studentdRepository;
     private readonly IEmailSender _emailSender;
+    private readonly IFileDetailRepository _fileDetailRepo;
     private readonly Microsoft.AspNetCore.Hosting.IHostingEnvironment _hostingEnvironment;
 
     public StudentsController(
@@ -38,7 +39,8 @@ public class StudentsController : Controller
         IEducationalDetailsRepository educationalDetailsRepo,
         IDisabilityLearningSupportRepository disabilityRepo,
         IHousingRepository housingRepo,
-        ISubmissionRepository submissionRepo)
+        ISubmissionRepository submissionRepo,
+        IFileDetailRepository fileDetailRepo)
     {
         _userManager = userManager;
         _studentdRepository = studentdRepository;
@@ -50,6 +52,7 @@ public class StudentsController : Controller
         _disabilityRepo = disabilityRepo;
         _housingRepo = housingRepo;
         _submissionRepo = submissionRepo;
+        _fileDetailRepo = fileDetailRepo;
     }
 
     public IActionResult MyApplications()
@@ -127,12 +130,10 @@ public class StudentsController : Controller
     {
         if (ModelState.IsValid)
         {
-            // Check if there's an existing PersonalDetails record for the student
             var existingPersonalDetails = _personalDetailsRepo.GetByStudentId(vm.StudentId);
 
             if (existingPersonalDetails != null)
             {
-                // Update existing PersonalDetails
                 using (var stream = new MemoryStream())
                 {
                     vm.PassportFile.CopyTo(stream);
@@ -155,6 +156,30 @@ public class StudentsController : Controller
                     existingPersonalDetails.PassportFile = stream.ToArray();
                     existingPersonalDetails.PassportFileName = vm.PassportFile.FileName;
                     existingPersonalDetails.PassportFileType = vm.PassportFile.ContentType;
+
+                    var existingFiles = existingPersonalDetails.FileDetails.Where(fd => fd.PersonalDetailsId == existingPersonalDetails.Id).ToList();
+                    _fileDetailRepo.RemoveRange(existingFiles);
+
+                    foreach (var file in vm.MultipleFiles)
+                    {
+                        if (file.Length > 0)
+                        {
+                            using (var fileStream = new MemoryStream())
+                            {
+                                file.CopyTo(fileStream);
+
+                                var fileDetail = new FileDetail()
+                                {
+                                    FileName = file.FileName,
+                                    FileType = file.ContentType,
+                                    Content = fileStream.ToArray(),
+                                    PersonalDetailsId = existingPersonalDetails.Id
+                                };
+
+                                _fileDetailRepo.Add(fileDetail);
+                            }
+                        }
+                    }
 
                     _personalDetailsRepo.Update(existingPersonalDetails);
                     _personalDetailsRepo.Save();
@@ -188,6 +213,28 @@ public class StudentsController : Controller
                         PassportFileType = vm.PassportFile.ContentType,
                         StudentId = vm.StudentId,
                     };
+
+                    foreach (var file in vm.MultipleFiles)
+                    {
+                        if (file.Length > 0)
+                        {
+                            using (var fileStream = new MemoryStream())
+                            {
+                                file.CopyTo(fileStream);
+
+                                var fileDetail = new FileDetail()
+                                {
+                                    FileName = file.FileName,
+                                    FileType = file.ContentType,
+                                    Content = fileStream.ToArray(),
+                                    PersonalDetailsId = existingPersonalDetails.Id
+                                };
+
+                                _fileDetailRepo.Add(fileDetail);
+                            }
+                        }
+                    }
+
                     _personalDetailsRepo.Add(newPersonalDetails);
                     _personalDetailsRepo.Save();
                 }
@@ -531,45 +578,6 @@ public class StudentsController : Controller
             }
 
             _submissionRepo.Save();
-
-            //string emailBody = @"
-            //<!DOCTYPE html>
-            //<html>
-            //<head>
-            //    <title>Student Exchange Offer</title>
-            //</head>
-            //<body>
-            //    <img src='cid:email_west.png' alt='WIUT Logo' />
-            //    <p>Dear {StudentName},</p>
-            //    <p>It is our pleasure to inform you that you have been accepted onto the Westminster University in Tashkent Exchange Programme.</p>
-            //    <h3>Exchange Programme Details:</h3>
-            //    <p>Academic Year: 2024/25</p>
-            //    <p>Duration: One semester</p>
-            //    <p>Key Dates:</p>
-            //    <ul>
-            //        <li>Orientation Week: 9 – 13 September 2024</li>
-            //        <li>Semester 1 duration: 16 September – 27 December 2024</li>
-            //    </ul>
-            //    <h3>What to do next?</h3>
-            //    <h4>Pre-Arrival Information</h4>
-            //    <p>The International Office will be sending you a pre-arrival e-mail to assist you with preparing for your upcoming semester at WIUT shortly. The information covered will include information to help you prepare for the accommodation and visa information student life in Uzbekistan and at WIUT.</p>
-            //    <h4>Terms and Conditions</h4>
-            //    <p>You should note details of our Inbound Student Exchange Terms and Conditions which can be found at the bottom of the page.</p>
-            //    <h4>Module and Results</h4>
-            //    <p>There is a set module pathway for exchange students nominated on the Economics subject area. You will require to contact either the Student Exchange Coordinator of your home campus or WIUT Course Leader of your subject area for advice on module selection.</p>
-            //    <p>Please note that as a semester-long student you will not receive semester 1 results until the result release date after semester 2.</p>
-            //    <h4>Disability Learning Support</h4>
-            //    <p>WIUT welcomes students with conditions or disabilities. We have an Inclusivity and Diversity Officer who can provide confidential support to help you make the most of your studies during your study abroad experience.</p>
-            //    <p>If you did not declare a disability at the time of application and now wish to register please contact us via email on sang@wiut.uz so that we can provide you with further information on how to register.</p>
-            //    <h4>Comprehensive Medical and Travel Insurance</h4>
-            //    <p>All students should ensure that they have comprehensive private medical and travel insurance to cover their time in Uzbekistan.</p>
-            //    <p>We look forward to welcoming you to WIUT!</p>
-            //    <p>Kind regards,</p>
-            //    <p>Student Records</p>
-            //    <p>Academic Registrar’s Office</p>
-            //    <p>Westminster International University in Tashkent</p>
-            //</body>
-            //</html>";
 
             string StudentName = student.ForeName + " " + student.FamilyName;
             string emailBody = $@"

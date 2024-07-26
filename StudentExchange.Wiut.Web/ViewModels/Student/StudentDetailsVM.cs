@@ -87,4 +87,6 @@ public class StudentDetailsVM
 
     public DateTime SubmissionCreated { get; set; }
 
+    [Required]
+    public string Status { get; set; }
 }

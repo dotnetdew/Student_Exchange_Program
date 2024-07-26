@@ -216,6 +216,25 @@
             </div>
         </div>
 
+        <h3>Upload other documents</h3>
+        <p>Please upload your photo, evidence of english, transcript (multiple upload)</p>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <input asp-for="MultipleFiles" type="file" value="" class="form-control" id="date-of-expiry" name="MultipleFiles" multiple>
+                <span asp-validation-for="MultipleFiles" class="text-danger"></span>
+                <ul id="selected-files">
+                    @if (Model.MultipleFiles != null)
+                    {
+                        foreach (var file in Model.MultipleFiles)
+                        {
+                            <li>@file.FileName</li>
+                        }
+                    }
+                </ul>
+            </div>
+        </div>
+
         <div class="form-row">
             <div class="form-group col-md-12">
                 <p>*Denotes a mandatory field</p>

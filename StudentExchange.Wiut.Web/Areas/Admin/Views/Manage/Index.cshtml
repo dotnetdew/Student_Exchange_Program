@@ -1,48 +1,110 @@
 ﻿@model IEnumerable<StudentExchange.Wiut.Web.ViewModels.Student.StudentVM>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student List</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
-<body>
-    <div class="container mt-5">
-        <h2 class="mb-4 text-center">Student List</h2>
-        <div class="table-responsive">
-            <table class="table table-striped table-bordered">
-                <thead class="thead-dark">
-                    <tr>
-                        <th>@Html.DisplayNameFor(m => m.Title)</th>
-                        <th>@Html.DisplayNameFor(m => m.ForeName)</th>
-                        <th>@Html.DisplayNameFor(m => m.FamilyName)</th>
-                        <th>@Html.DisplayNameFor(m => m.Email)</th>
-                        <th>@Html.DisplayNameFor(m => m.DateOfBirth)</th>
-                        <th>Details</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var student in Model)
-                    {
-                        <tr>
-                            <td>@student.Title</td>
-                            <td>@student.ForeName</td>
-                            <td>@student.FamilyName</td>
-                            <td>@student.Email</td>
-                            <td>@student.DateOfBirth.ToString("yyyy-MM-dd")</td>
-                            <td>
-                                <a href="@Url.Action("StudentDetails", "Manage", new { area = "Admin", studentId = student.Id })" class="btn btn-primary btn-sm">Details</a>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-    </div>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student List</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link href="~/css/toastr.min.css" rel="stylesheet" />
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>
+<!-- Load the full version of jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="~/js/toastr.min.js"></script>
+
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+
+    .container {
+        background-color: #ffffff;
+        padding: 30px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+    }
+
+    h2 {
+        font-weight: 700;
+        color: #343a40;
+    }
+
+    .table thead th {
+        background-color: #007bff;
+        color: white;
+    }
+
+    .table tbody tr {
+        transition: all 0.3s ease-in-out;
+    }
+
+        .table tbody tr:hover {
+            background-color: #e9ecef;
+        }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+</style>
+
+<div class="container mt-5">
+    <h2 class="mb-4 text-center">Student List</h2>
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>@Html.DisplayNameFor(m => m.Title)</th>
+                    <th>@Html.DisplayNameFor(m => m.ForeName)</th>
+                    <th>@Html.DisplayNameFor(m => m.FamilyName)</th>
+                    <th>@Html.DisplayNameFor(m => m.Email)</th>
+                    <th>@Html.DisplayNameFor(m => m.DateOfBirth)</th>
+                    <th>@Html.DisplayNameFor(m => m.Status)</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var student in Model)
+                {
+                    <tr>
+                        <td>@student.Title</td>
+                        <td>@student.ForeName</td>
+                        <td>@student.FamilyName</td>
+                        <td>@student.Email</td>
+                        <td>@student.DateOfBirth.ToString("yyyy-MM-dd")</td>
+                        <td>
+                            <select class="form-control form-select" id="status-select" onchange="updateStatus(this.value, '@student.Id')">
+                                <option value="To Be Confirmed" @(student.Status == "To Be Confirmed" ? "selected" : "")>To Be Confirmed</option>
+                                <option value="Approved" @(student.Status == "Approved" ? "selected" : "")>Approved</option>
+                                <option value="Rejected" @(student.Status == "Rejected" ? "selected" : "")>Rejected</option>
+                            </select>
+                        </td>
+                        <td>
+                            <a href="@Url.Action("StudentDetails", "Manage", new { area = "Admin", studentId = student.Id })" class="btn btn-primary btn-sm">Details</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    function updateStatus(status, studentId) {
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("UpdateStatus", "Manage")",
+            data: { status: status, id: studentId },
+            success: function () {
+                toastr.success("Successfully saved!");
+            },
+            error: function (xhr, status, error) {
+                console.log("Error updating status: " + error);
+            }
+        });
+    }
+</script>

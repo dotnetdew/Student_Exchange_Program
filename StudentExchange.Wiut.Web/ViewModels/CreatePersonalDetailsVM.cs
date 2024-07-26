@@ -36,4 +36,7 @@ public class CreatePersonalDetailsVM
     //Relationship
     [Required]
     public string StudentId { get; set; }
+
+    [Required]
+    public List<IFormFile> MultipleFiles { get; set; }
 }

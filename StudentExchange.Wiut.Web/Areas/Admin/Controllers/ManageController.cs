@@ -56,6 +56,7 @@ public class ManageController : Controller
             FamilyName = u.FamilyName,
             Email = u.Email,
             DateOfBirth = u.DateOfBirth,
+            Status = u.Status
         });
         return View(VMs);
     }
@@ -63,7 +64,6 @@ public class ManageController : Controller
     [HttpGet]
     public IActionResult StudentDetails(string studentId)
     {
-        // Fetch necessary data from repositories
         var student = _studentdRepository.GetById(studentId);
         var personalDetails = _personalDetailsRepo.GetByStudentId(studentId);
         var contactDetails = _contactDetailsRepo.GetByStudentId(studentId);
@@ -72,7 +72,6 @@ public class ManageController : Controller
         var housingDetails = _housingRepo.GetByStudentId(studentId);
         var submission = _submissionRepo.GetByStudentId(studentId);
 
-        // Create the view model
         var studentDetailsVM = new StudentDetailsVM
         {
             // Populate student details
@@ -83,6 +82,7 @@ public class ManageController : Controller
             ForeName3 = student?.ForeName3,
             FamilyName = student?.FamilyName,
             DateOfBirth = student?.DateOfBirth ?? DateTime.MinValue,
+            Status = student.Status,
 
             // Populate personal details
             SecondForeName = personalDetails?.SecondForeName,
@@ -132,14 +132,19 @@ public class ManageController : Controller
             SubmissionCreated = submission?.SubmissionCreated ?? DateTime.MinValue
         };
 
-        // Check if any required data is null to decide the view to display
-        //if (student == null || personalDetails == null || contactDetails == null ||
-        //    educationalDetails == null || disabilityDetails == null || housingDetails == null || submission == null)
-        //{
-        //    return View("StudentDetailsWithoutData", studentDetailsVM); // Display view without data
-        //}
-
-        return View(studentDetailsVM); // Display view with populated data
+        return View(studentDetailsVM);
     }
 
+    [HttpPost]
+    public ActionResult UpdateStatus(string status, string id)
+    {
+        var student = _studentdRepository.GetById(id);
+
+        student.Status = status;
+
+        _studentdRepository.Update(student);
+        _studentdRepository.Save();
+
+        return Json(new { success = true });
+    }
 }
