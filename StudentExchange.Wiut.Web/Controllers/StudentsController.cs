@@ -3,13 +3,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using StudentExchange.Wiut.Web.Models;
-using StudentExchange.Wiut.Web.Repositories;
 using StudentExchange.Wiut.Web.Repositories.Interfaces;
 using StudentExchange.Wiut.Web.ViewModels;
-using System.IO;
-using System.Net;
-using System.Net.Mail;
-using System.Net.Mime;
 using System.Security.Claims;
 
 namespace StudentExchange.Wiut.Web.Controllers;

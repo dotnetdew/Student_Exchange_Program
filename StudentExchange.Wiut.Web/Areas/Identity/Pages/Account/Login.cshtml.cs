@@ -127,6 +127,10 @@ public class LoginModel : PageModel
                     {
                         return LocalRedirect($"/Admin/Manage");
                     }
+                    else if (await _userManager.IsInRoleAsync(user, "Coordinator"))
+                    {
+                        return LocalRedirect($"/Coordinator/SendAcceptanceLetterForm");
+                    }
                     else
                     {
                         var user_id = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
